@@ -23,8 +23,8 @@ export function VerticalNavigation({ items, className }: { items: NavItem[]; cla
                     className={cn(
                         "group flex items-center px-4 py-3 text-[11px] font-black uppercase tracking-widest rounded-2xl transition-all",
                         item.active
-                            ? "bg-[#0F172A] text-white shadow-lg shadow-slate-900/20"
-                            : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+                            ? "bg-[#0F172A] text-white shadow-lg shadow-slate-900/20 dark:bg-blue-600"
+                            : "text-slate-500 hover:bg-slate-50 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-slate-100"
                     )}
                 >
                     <item.icon
@@ -38,7 +38,7 @@ export function VerticalNavigation({ items, className }: { items: NavItem[]; cla
                     {item.badge && (
                         <span className={cn(
                             "ml-3 rounded-full px-2 py-0.5 text-[9px]",
-                            item.active ? "bg-white/10 text-white" : "bg-slate-100 text-slate-500"
+                            item.active ? "bg-white/10 text-white" : "bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400"
                         )}>
                             {item.badge}
                         </span>

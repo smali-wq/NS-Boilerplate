@@ -64,18 +64,18 @@ export function Drawer({ isOpen, onClose, title, description, children, footer, 
                 sideStyles.container,
                 sideStyles.translate
             )}>
-                <div className={cn("bg-white shadow-2xl flex flex-col", sideStyles.width, sideStyles.height)}>
-                    <div className="px-6 py-8 border-b border-slate-100">
+                <div className={cn("bg-white dark:bg-slate-900 shadow-2xl flex flex-col", sideStyles.width, sideStyles.height)}>
+                    <div className="px-6 py-8 border-b border-slate-100 dark:border-slate-800">
                         <div className="flex items-start justify-between">
                             <div>
-                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">{title}</h2>
+                                <h2 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tight">{title}</h2>
                                 {description && (
-                                    <p className="mt-1 text-xs font-bold text-slate-400 uppercase tracking-widest">{description}</p>
+                                    <p className="mt-1 text-[12px] font-bold text-slate-400 uppercase tracking-widest">{description}</p>
                                 )}
                             </div>
                             <button
                                 onClick={onClose}
-                                className="p-2 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-all"
+                                className="p-2 text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all"
                             >
                                 <X className="h-5 w-5" />
                             </button>
@@ -85,7 +85,7 @@ export function Drawer({ isOpen, onClose, title, description, children, footer, 
                         {children}
                     </div>
                     {footer && (
-                        <div className="px-6 py-8 bg-slate-50 border-t border-slate-100">
+                        <div className="px-6 py-8 bg-slate-50 dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800">
                             {footer}
                         </div>
                     )}

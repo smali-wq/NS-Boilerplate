@@ -29,7 +29,7 @@ export function DescriptionList({ items, layout = 'horizontal', className }: Des
                     "space-y-1",
                     layout === 'horizontal' ? "md:border-l md:border-slate-100 md:pl-6 first:border-0 first:pl-0" : ""
                 )}>
-                    <dt className="text-[10px] font-black uppercase text-slate-400 tracking-widest">{item.label}</dt>
+                    <dt className="text-[12px] font-black uppercase text-slate-400 tracking-widest">{item.label}</dt>
                     <dd className="text-sm font-bold text-slate-900">{item.value}</dd>
                 </div>
             ))}
@@ -90,7 +90,7 @@ export function Feed({ items, className }: FeedProps) {
                                             )}
                                         </p>
                                     </div>
-                                    <div className="whitespace-nowrap text-right text-[10px] font-black uppercase text-slate-400 tracking-widest">
+                                    <div className="whitespace-nowrap text-right text-[12px] font-black uppercase text-slate-400 tracking-widest">
                                         <time dateTime={item.datetime}>{item.date}</time>
                                     </div>
                                 </div>

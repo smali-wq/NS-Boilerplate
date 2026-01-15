@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { cn } from '../utils/cn'
 import {
     Activity, Layout as LayoutIcon, Settings, Users, BarChart3,
@@ -6,8 +6,8 @@ import {
     Edit2, Trash2, Eye, ChevronDown, ChevronUp,
     FileText, Image as ImageIcon, Video, MoreHorizontal,
     CheckCircle2, Clock, AlertCircle, ChevronLeft, ChevronRight, Lock,
-    Shield, Zap, Cloud, CreditCard, Terminal,
-    Info, AlertTriangle
+    Shield, Zap, Cloud, CreditCard, Terminal, Database, Cpu,
+    Info, AlertTriangle, Sun, Moon
 } from 'lucide-react'
 
 // Atoms
@@ -37,6 +37,7 @@ import { Notification, NotificationContainer } from '../components/molecules/Not
 import { ButtonGroup } from '../components/molecules/ButtonGroup'
 import { MediaObject } from '../components/molecules/MediaObject'
 import { ListContainer, ListItem } from '../components/molecules/ListContainer'
+import { AIOperator } from '../components/molecules/AIOperator'
 
 // Organisms
 import { Modal, ModalContent, ModalFooter, ModalHeader } from '../components/organisms/Modal'
@@ -82,12 +83,38 @@ import { SelectDemo, CopyButton } from '../components/interactive/FormElements'
 
 
 
+import { ThemeEditor } from '../components/interactive/ThemeEditor'
+import { GlobalSearch } from '../components/interactive/GlobalSearch'
+import { Carousel } from '../components/molecules/Carousel'
+
+// ... existing imports ...
+
 export function ComponentGallery() {
     const [activeTab, setActiveTab] = useState('layout')
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
     const [drawerSide, setDrawerSide] = useState<'left' | 'right' | 'top' | 'bottom'>('right')
     const [switchState, setSwitchState] = useState(false)
+    const [darkMode, setDarkMode] = useState(false)
+
+    // Initialize Dark Mode from localStorage
+    useEffect(() => {
+        const savedMode = localStorage.getItem('nsui-theme-mode')
+        if (savedMode === 'dark' || (!savedMode && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            setDarkMode(true)
+        }
+    }, [])
+
+    // Sync Dark Mode
+    useEffect(() => {
+        if (darkMode) {
+            document.documentElement.classList.add('dark')
+            localStorage.setItem('nsui-theme-mode', 'dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+            localStorage.setItem('nsui-theme-mode', 'light')
+        }
+    }, [darkMode])
 
     // Shell Demo State
     const [activeShell, setActiveShell] = useState<'sidebar' | 'stacked' | 'multi' | null>(null)
@@ -123,7 +150,7 @@ export function ComponentGallery() {
                     <header className="flex justify-between items-end">
                         <div className="text-left">
                             <Breadcrumbs items={[{ label: 'System', href: '#' }, { label: 'Sidebar Shell', active: true }]} />
-                            <h2 className="mt-2 text-2xl font-black text-slate-900 uppercase tracking-tight">Sidebar Layout Preview</h2>
+                            <h2 className="mt-2 text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">Sidebar Layout Preview</h2>
                         </div>
                         <Button variant="brand" onClick={() => setActiveShell(null)}>Exit Shell Preview</Button>
                     </header>
@@ -150,7 +177,7 @@ export function ComponentGallery() {
                 <div className="space-y-8 text-left">
                     <header className="flex justify-between items-center">
                         <div>
-                            <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tight">Stacked Layout View</h2>
+                            <h2 className="text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tight">Stacked Layout View</h2>
                             <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Condensed top-nav architecture</p>
                         </div>
                         <Button variant="brand" onClick={() => setActiveShell(null)}>Exit Shell Preview</Button>
@@ -170,32 +197,51 @@ export function ComponentGallery() {
     }
 
     return (
-        <div className="min-h-screen bg-slate-50">
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
             {/* STICKY HEADER */}
-            <header className="fixed top-0 left-0 right-0 bg-[#0F172A] border-b border-white/5 z-40 px-8 py-4 flex justify-between items-center shadow-2xl">
-                <div className="flex items-center space-x-4">
+            <header className="fixed top-0 left-0 right-0 bg-[#0F172A] border-b border-white/5 z-40 px-8 py-4 flex justify-between items-center shadow-2xl gap-8">
+                <div className="flex items-center space-x-4 shrink-0">
                     <div className="w-10 h-10 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black shadow-lg shadow-blue-600/20">UB</div>
                     <div>
                         <h1 className="text-xl font-black text-white tracking-tight uppercase">NSUI</h1>
-                        <p className="text-[10px] text-blue-400 font-bold uppercase tracking-widest">Component Documentation</p>
+                        <p className="text-[12px] text-blue-400 font-bold uppercase tracking-widest">Component Documentation</p>
                     </div>
                 </div>
 
-                <div className="flex gap-4 items-center">
-                    <Tabs defaultValue="layout" onValueChange={setActiveTab}>
+                <div className="flex-1 max-w-xl">
+                    <GlobalSearch onNavigate={setActiveTab} />
+                </div>
+
+                <div className="flex gap-4 items-center overflow-x-auto no-scrollbar">
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => setDarkMode(!darkMode)}
+                        className="text-slate-400 hover:text-white shrink-0"
+                    >
+                        {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                    </Button>
+
+                    <Tabs defaultValue="layout" value={activeTab} onValueChange={setActiveTab}>
+                        {/* TAB TRIGGERS - REORDERED LOGICALLY */}
                         <TabsList className="bg-white/5 border-white/10 p-1">
-                            <TabsTrigger value="layout" className="text-white/50 hover:text-white data-[state=active]:bg-blue-400 data-[state=active]:text-slate-900">Layout</TabsTrigger>
-                            <TabsTrigger value="elements" className="text-white/50 hover:text-white data-[state=active]:bg-emerald-400 data-[state=active]:text-slate-900">Elements</TabsTrigger>
-                            <TabsTrigger value="navigation" className="text-white/50 hover:text-white data-[state=active]:bg-blue-500 data-[state=active]:text-white">Navigation</TabsTrigger>
-                            <TabsTrigger value="overlays" className="text-white/50 hover:text-white data-[state=active]:bg-purple-600 data-[state=active]:text-white">Overlays</TabsTrigger>
-                            <TabsTrigger value="forms" className="text-white/50 hover:text-white data-[state=active]:bg-emerald-500 data-[state=active]:text-white">Forms</TabsTrigger>
-                            <TabsTrigger value="tables" className="text-white/50 hover:text-white data-[state=active]:bg-amber-500 data-[state=active]:text-white">Tables</TabsTrigger>
-                            <TabsTrigger value="display" className="text-white/50 hover:text-white data-[state=active]:bg-indigo-600 data-[state=active]:text-white">Display</TabsTrigger>
-                            <TabsTrigger value="kpi" className="text-white/50 hover:text-white data-[state=active]:bg-rose-600 data-[state=active]:text-white">KPI</TabsTrigger>
-                            <TabsTrigger value="application" className="text-white/50 hover:text-white data-[state=active]:bg-blue-600 data-[state=active]:text-white">App UI</TabsTrigger>
-                            <TabsTrigger value="shells" className="text-white/50 hover:text-white data-[state=active]:bg-emerald-600 data-[state=active]:text-white">Shells</TabsTrigger>
-                            <TabsTrigger value="sections" className="text-white/50 hover:text-white data-[state=active]:bg-purple-600 data-[state=active]:text-white">Sections</TabsTrigger>
-                            <TabsTrigger value="interactive" className="text-white/50 hover:text-white data-[state=active]:bg-amber-500 data-[state=active]:text-white">Interactive</TabsTrigger>
+                            <TabsTrigger value="layout" className="text-white/60 hover:text-white hover:bg-white/10 data-[state=active]:bg-blue-400 data-[state=active]:text-slate-900">Layout</TabsTrigger>
+                            <TabsTrigger value="elements" className="text-white/60 hover:text-white hover:bg-white/10 data-[state=active]:bg-emerald-400 data-[state=active]:text-slate-900">Elements</TabsTrigger>
+                            <TabsTrigger value="forms" className="text-white/60 hover:text-white hover:bg-white/10 data-[state=active]:bg-emerald-500 data-[state=active]:text-white">Forms</TabsTrigger>
+                            <TabsTrigger value="navigation" className="text-white/60 hover:text-white hover:bg-white/10 data-[state=active]:bg-blue-500 data-[state=active]:text-white">Navigation</TabsTrigger>
+                            <TabsTrigger value="overlays" className="text-white/60 hover:text-white hover:bg-white/10 data-[state=active]:bg-purple-600 data-[state=active]:text-white">Overlays</TabsTrigger>
+                            <TabsTrigger value="display" className="text-white/60 hover:text-white hover:bg-white/10 data-[state=active]:bg-indigo-600 data-[state=active]:text-white">Display</TabsTrigger>
+                            <TabsTrigger value="tables" className="text-white/60 hover:text-white hover:bg-white/10 data-[state=active]:bg-amber-500 data-[state=active]:text-white">Tables</TabsTrigger>
+                            <TabsTrigger value="interactive" className="text-white/60 hover:text-white hover:bg-white/10 data-[state=active]:bg-amber-500 data-[state=active]:text-white">Interactive</TabsTrigger>
+                            <TabsTrigger value="sections" className="text-white/60 hover:text-white hover:bg-white/10 data-[state=active]:bg-purple-600 data-[state=active]:text-white">Sections</TabsTrigger>
+                            <TabsTrigger value="carousel" className="text-white/60 hover:text-white hover:bg-white/10 data-[state=active]:bg-blue-600 data-[state=active]:text-white">Carousel</TabsTrigger>
+                            <TabsTrigger value="shells" className="text-white/60 hover:text-white hover:bg-white/10 data-[state=active]:bg-emerald-600 data-[state=active]:text-white">Shells</TabsTrigger>
+                            <TabsTrigger value="kpi" className="text-white/60 hover:text-white hover:bg-white/10 data-[state=active]:bg-rose-600 data-[state=active]:text-white">KPI</TabsTrigger>
+                            <TabsTrigger value="application" className="text-white/60 hover:text-white hover:bg-white/10 data-[state=active]:bg-blue-600 data-[state=active]:text-white">App UI</TabsTrigger>
+                            <TabsTrigger value="ai" className="text-white/60 hover:text-white hover:bg-white/10 data-[state=active]:bg-indigo-400 data-[state=active]:text-slate-900">AI Preview</TabsTrigger>
+                            <TabsTrigger value="theme" className="text-white/60 hover:text-white hover:bg-white/10 data-[state=active]:bg-white data-[state=active]:text-slate-900 font-bold">
+                                <span className="flex items-center gap-2"><Settings className="w-3 h-3" /> Theme</span>
+                            </TabsTrigger>
                         </TabsList>
                     </Tabs>
                 </div>
@@ -203,14 +249,23 @@ export function ComponentGallery() {
 
             <main className="pt-32 pb-20 px-8">
                 <Container>
-
+                    {/* THEME EDITOR SECTION */}
+                    {activeTab === 'theme' && (
+                        <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-500 text-left">
+                            <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
+                                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">Design System</h2>
+                                <p className="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-widest mt-1">Live token editor and style configurator.</p>
+                            </div>
+                            <ThemeEditor />
+                        </div>
+                    )}
 
                     {/* LAYOUT SECTION */}
                     {activeTab === 'layout' && (
                         <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-500 text-left">
-                            <div className="border-b border-slate-200 pb-4">
-                                <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">03. Layout & Structure</h2>
-                                <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">Foundational components for site structure and content organization.</p>
+                            <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
+                                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">03. Layout & Structure</h2>
+                                <p className="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-widest mt-1">Foundational components for site structure and content organization.</p>
                             </div>
 
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -218,12 +273,12 @@ export function ComponentGallery() {
                                 <div className="space-y-8">
                                     <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4">03.1 Containers & Constraints</h3>
                                     <div className="space-y-4">
-                                        <div className="bg-slate-100 rounded-2xl p-4 border border-slate-200">
-                                            <Container className="bg-white p-6 rounded-xl border border-blue-100 shadow-sm text-center">
-                                                <p className="text-[10px] font-black text-blue-600 uppercase tracking-[0.2em]">Centered Max-Width Container (1280px)</p>
+                                        <div className="bg-slate-100 dark:bg-slate-800/50 rounded-2xl p-4 border border-slate-200 dark:border-slate-800">
+                                            <Container className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-blue-100 dark:border-blue-900 shadow-sm text-center">
+                                                <p className="text-[12px] font-black text-blue-600 uppercase tracking-[0.2em]">Centered Max-Width Container (1280px)</p>
                                             </Container>
                                         </div>
-                                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Standardized horizontal constraints for content alignment.</p>
+                                        <p className="text-[12px] font-bold text-slate-400 uppercase tracking-widest">Standardized horizontal constraints for content alignment.</p>
                                     </div>
                                 </div>
 
@@ -264,16 +319,16 @@ export function ComponentGallery() {
                                     <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4">03.4 List Containers</h3>
                                     <ListContainer>
                                         <ListItem action={<Badge variant="success">Active</Badge>}>
-                                            <p className="text-sm font-black text-slate-900 uppercase tracking-tight">System Core v4.2</p>
-                                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Updated 4 hours ago</p>
+                                            <p className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-tight">System Core v4.2</p>
+                                            <p className="text-[12px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Updated 4 hours ago</p>
                                         </ListItem>
                                         <ListItem onClick={() => { }} action={<ChevronRight size={16} className="text-slate-400" />}>
-                                            <p className="text-sm font-black text-slate-900 uppercase tracking-tight">Billing Settings</p>
-                                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Manage enterprise subscriptions</p>
+                                            <p className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-tight">Billing Settings</p>
+                                            <p className="text-[12px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Manage enterprise subscriptions</p>
                                         </ListItem>
                                         <ListItem action={<Button variant="outline" size="sm">Manage</Button>}>
-                                            <p className="text-sm font-black text-slate-900 uppercase tracking-tight">Security Audit</p>
-                                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Last scan: Oct 12, 2026</p>
+                                            <p className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-tight">Security Audit</p>
+                                            <p className="text-[12px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Last scan: Oct 12, 2026</p>
                                         </ListItem>
                                     </ListContainer>
                                 </div>
@@ -284,9 +339,9 @@ export function ComponentGallery() {
                     {/* ELEMENTS SECTION */}
                     {activeTab === 'elements' && (
                         <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-500 text-left">
-                            <div className="border-b border-slate-200 pb-4">
-                                <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">04. UI Elements</h2>
-                                <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">Foundational components for actions, identity, and feedback.</p>
+                            <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
+                                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">04. UI Elements</h2>
+                                <p className="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-widest mt-1">Foundational components for actions, identity, and feedback.</p>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -305,7 +360,7 @@ export function ComponentGallery() {
                                                 <Button variant="ghost" size="sm">Ghost</Button>
                                             </div>
                                             <div className="space-y-3">
-                                                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Button Groups</p>
+                                                <p className="text-[12px] font-black text-slate-400 uppercase tracking-widest">Button Groups</p>
                                                 <ButtonGroup>
                                                     <Button variant="outline" size="sm" icon={LayoutIcon}>View</Button>
                                                     <Button variant="outline" size="sm" icon={Edit2}>Edit</Button>
@@ -368,15 +423,45 @@ export function ComponentGallery() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="space-y-4">
                                             <Alert variant="default">
-                                                <AlertTitle>System Maintenance</AlertTitle>
-                                                <AlertDescription>We are upgrading our edge clusters tonight at 02:00 GMT.</AlertDescription>
+                                                <AlertTitle>Default System</AlertTitle>
+                                                <AlertDescription>Standard system notification with neutral styling.</AlertDescription>
+                                            </Alert>
+                                            <Alert variant="info">
+                                                <AlertTitle>Information</AlertTitle>
+                                                <AlertDescription>New features are available in the dashboard.</AlertDescription>
+                                            </Alert>
+                                            <Alert variant="success">
+                                                <AlertTitle>Operation Successful</AlertTitle>
+                                                <AlertDescription>Your changes have been saved successfully.</AlertDescription>
                                             </Alert>
                                             <Alert variant="warning">
-                                                <AlertTitle>Expiring Token</AlertTitle>
-                                                <AlertDescription>Your API access token will expire in less than 24 hours.</AlertDescription>
+                                                <AlertTitle>Warning Issued</AlertTitle>
+                                                <AlertDescription>Your account subscription expires in 3 days.</AlertDescription>
+                                            </Alert>
+                                            <Alert variant="danger">
+                                                <AlertTitle>Critical Error</AlertTitle>
+                                                <AlertDescription>Failed to connect to the database server.</AlertDescription>
                                             </Alert>
                                         </div>
-                                        <div className="bg-white p-6 rounded-[32px] border border-slate-200 shadow-sm flex flex-col items-center justify-center text-center">
+                                        <div className="space-y-4">
+                                            <Alert variant="primary">
+                                                <AlertTitle>Primary Action</AlertTitle>
+                                                <AlertDescription>Please review the terms of service update.</AlertDescription>
+                                            </Alert>
+                                            <Alert variant="secondary">
+                                                <AlertTitle>Secondary Note</AlertTitle>
+                                                <AlertDescription>This is a secondary priority notification.</AlertDescription>
+                                            </Alert>
+                                            <Alert variant="dark">
+                                                <AlertTitle>Dark Mode</AlertTitle>
+                                                <AlertDescription>High contrast alert for dark environments.</AlertDescription>
+                                            </Alert>
+                                            <Alert variant="light">
+                                                <AlertTitle>Light Mode</AlertTitle>
+                                                <AlertDescription>Subtle alert for light backgrounds.</AlertDescription>
+                                            </Alert>
+                                        </div>
+                                        <div className="bg-white p-6 rounded-[32px] border border-slate-200 shadow-sm flex flex-col items-center justify-center text-center md:col-span-2">
                                             <EmptyState
                                                 title="No Documentation Found"
                                                 description="Search returned no matching components. Adjust your filters and try again."
@@ -393,9 +478,9 @@ export function ComponentGallery() {
                     {/* NAVIGATION SECTION */}
                     {activeTab === 'navigation' && (
                         <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-500 text-left">
-                            <div className="border-b border-slate-200 pb-4">
-                                <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">05. Navigation</h2>
-                                <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">Wayfinding and progress indicators for complex interfaces.</p>
+                            <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
+                                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">05. Navigation</h2>
+                                <p className="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-widest mt-1">Wayfinding and progress indicators for complex interfaces.</p>
                             </div>
 
                             {/* Global Header & MegaMenu */}
@@ -404,7 +489,7 @@ export function ComponentGallery() {
                                 <div className="flex items-center gap-6 p-6 bg-slate-900 rounded-[32px] shadow-2xl relative min-h-[80px]">
                                     <MegaMenu
                                         trigger={
-                                            <div className="flex items-center gap-2 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-white hover:text-blue-400 transition-colors">
+                                            <div className="flex items-center gap-2 px-4 py-2 text-[12px] font-black uppercase tracking-widest text-white hover:text-blue-400 transition-colors">
                                                 Solutions <ChevronDown className="w-3 h-3" />
                                             </div>
                                         }
@@ -429,7 +514,7 @@ export function ComponentGallery() {
                                         footer={{ label: 'View all enterprise solutions', href: '#' }}
                                     />
                                     <div className="h-4 w-px bg-white/10" />
-                                    <Button variant="ghost" size="sm" className="text-white hover:bg-white/10 uppercase tracking-widest text-[10px] font-black">
+                                    <Button variant="ghost" size="sm" className="text-white hover:bg-white/10 uppercase tracking-widest text-[12px] font-black">
                                         Account <MoreHorizontal className="ml-2 w-4 h-4" />
                                     </Button>
                                 </div>
@@ -463,16 +548,16 @@ export function ComponentGallery() {
                                             </CardContent>
                                         </Card>
                                         <div className="space-y-6">
-                                            <div className="bg-white p-6 rounded-[32px] border border-slate-200 shadow-sm">
-                                                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Breadcrumbs</p>
+                                            <div className="bg-white dark:bg-slate-900 p-6 rounded-[32px] border border-slate-200 dark:border-slate-800 shadow-sm">
+                                                <p className="text-[12px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-4">Breadcrumbs</p>
                                                 <Breadcrumbs items={[
                                                     { label: 'Cloud', href: '#' },
                                                     { label: 'Clusters', href: '#' },
                                                     { label: 'US-EAST-1', active: true },
                                                 ]} />
                                             </div>
-                                            <div className="bg-white p-6 rounded-[32px] border border-slate-200 shadow-sm">
-                                                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Tabs Interface</p>
+                                            <div className="bg-white dark:bg-slate-900 p-6 rounded-[32px] border border-slate-200 dark:border-slate-800 shadow-sm">
+                                                <p className="text-[12px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-4">Tabs Interface</p>
                                                 <Tabs defaultValue="overview">
                                                     <TabsList className="w-full bg-slate-50 border-slate-100 p-1">
                                                         <TabsTrigger value="overview" className="flex-1">Overview</TabsTrigger>
@@ -511,8 +596,8 @@ export function ComponentGallery() {
                                                 ]} />
                                             </CardContent>
                                         </Card>
-                                        <div className="bg-white p-8 rounded-[32px] border border-slate-200 shadow-sm">
-                                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6">Pagination Controls</p>
+                                        <div className="bg-white dark:bg-slate-900 p-8 rounded-[32px] border border-slate-200 dark:border-slate-800 shadow-sm">
+                                            <p className="text-[12px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-6">Pagination Controls</p>
                                             <Pagination currentPage={3} totalPages={8} />
                                         </div>
                                     </div>
@@ -522,87 +607,11 @@ export function ComponentGallery() {
                     )}
 
 
-                    {/* LAYOUT SECTION */}
-                    {activeTab === 'layout' && (
-                        <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-500 text-left">
-                            <div className="border-b border-slate-200 pb-4">
-                                <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">03. Layout & Structure</h2>
-                                <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">Foundational components for site structure and content organization.</p>
-                            </div>
-
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                                {/* Containers & Spacing */}
-                                <div className="space-y-8">
-                                    <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4">03.1 Containers & Constraints</h3>
-                                    <div className="space-y-4">
-                                        <div className="bg-slate-100 rounded-2xl p-4 border border-slate-200">
-                                            <Container className="bg-white p-6 rounded-xl border border-blue-100 shadow-sm text-center">
-                                                <p className="text-[10px] font-black text-blue-600 uppercase tracking-[0.2em]">Centered Max-Width Container (1280px)</p>
-                                            </Container>
-                                        </div>
-                                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Standardized horizontal constraints for content alignment.</p>
-                                    </div>
-                                </div>
-
-                                {/* Dividers */}
-                                <div className="space-y-8">
-                                    <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4">03.2 Stylized Dividers</h3>
-                                    <div className="space-y-2">
-                                        <Divider />
-                                        <Divider label="Section Break" />
-                                        <Divider label="Continue" className="my-12" />
-                                    </div>
-                                </div>
-
-                                {/* Media Objects */}
-                                <div className="space-y-8">
-                                    <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4">03.3 Media Objects</h3>
-                                    <Card>
-                                        <CardContent className="p-8 space-y-8">
-                                            <MediaObject
-                                                title="Production Cluster"
-                                                description="Primary Kubernetes environment monitoring 14 nodes."
-                                                icon={Zap}
-                                                iconBackground="bg-amber-100"
-                                            />
-                                            <MediaObject
-                                                title="Cloud Storage"
-                                                description="Distributed S3-compatible object storage with 99.999% durability."
-                                                icon={Cloud}
-                                                iconBackground="bg-blue-100"
-                                                align="center"
-                                            />
-                                        </CardContent>
-                                    </Card>
-                                </div>
-
-                                {/* List Containers */}
-                                <div className="space-y-8">
-                                    <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4">03.4 List Containers</h3>
-                                    <ListContainer>
-                                        <ListItem action={<Badge variant="success">Active</Badge>}>
-                                            <p className="text-sm font-black text-slate-900 uppercase tracking-tight">System Core v4.2</p>
-                                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Updated 4 hours ago</p>
-                                        </ListItem>
-                                        <ListItem onClick={() => { }} action={<ChevronRight size={16} className="text-slate-400" />}>
-                                            <p className="text-sm font-black text-slate-900 uppercase tracking-tight">Billing Settings</p>
-                                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Manage enterprise subscriptions</p>
-                                        </ListItem>
-                                        <ListItem action={<Button variant="outline" size="sm">Manage</Button>}>
-                                            <p className="text-sm font-black text-slate-900 uppercase tracking-tight">Security Audit</p>
-                                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Last scan: Oct 12, 2026</p>
-                                        </ListItem>
-                                    </ListContainer>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
                     {/* OVERLAYS SECTION */}
                     {activeTab === 'overlays' && (
                         <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-500 text-left">
                             <div className="border-b border-slate-200 pb-4">
-                                <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">05. Overlays & Feedback</h2>
+                                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">05. Overlays & Feedback</h2>
                                 <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">Contextual layers for focus, configuration, and alerting.</p>
                             </div>
 
@@ -644,19 +653,19 @@ export function ComponentGallery() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                                         <Button variant="outline" className="h-24 flex-col gap-2 border-emerald-100 hover:bg-emerald-50 text-emerald-600" onClick={() => addNotification('Operation Successful', 'success')}>
                                             <CheckCircle2 className="w-5 h-5" />
-                                            <span className="text-[10px] uppercase font-black tracking-widest">Success Toast</span>
+                                            <span className="text-[12px] uppercase font-black tracking-widest">Success Toast</span>
                                         </Button>
                                         <Button variant="outline" className="h-24 flex-col gap-2 border-rose-100 hover:bg-rose-50 text-rose-600" onClick={() => addNotification('Access Denied', 'error')}>
                                             <AlertCircle className="w-5 h-5" />
-                                            <span className="text-[10px] uppercase font-black tracking-widest">Error Toast</span>
+                                            <span className="text-[12px] uppercase font-black tracking-widest">Error Toast</span>
                                         </Button>
                                         <Button variant="outline" className="h-24 flex-col gap-2 border-blue-100 hover:bg-blue-50 text-blue-600" onClick={() => addNotification('New System Update', 'info')}>
                                             <Info className="w-5 h-5" />
-                                            <span className="text-[10px] uppercase font-black tracking-widest">Info Toast</span>
+                                            <span className="text-[12px] uppercase font-black tracking-widest">Info Toast</span>
                                         </Button>
                                         <Button variant="outline" className="h-24 flex-col gap-2 border-amber-100 hover:bg-amber-50 text-amber-600" onClick={() => addNotification('Low Disk Space', 'warning')}>
                                             <AlertTriangle className="w-5 h-5" />
-                                            <span className="text-[10px] uppercase font-black tracking-widest">Warning Toast</span>
+                                            <span className="text-[12px] uppercase font-black tracking-widest">Warning Toast</span>
                                         </Button>
                                     </div>
                                 </div>
@@ -667,9 +676,9 @@ export function ComponentGallery() {
                     {/* FORMS SECTION */}
                     {activeTab === 'forms' && (
                         <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-500 text-left">
-                            <div className="border-b border-slate-200 pb-4">
-                                <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">06. Forms & Authentication</h2>
-                                <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">Complete form ecosystem from atoms to auth templates.</p>
+                            <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
+                                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">06. Forms & Authentication</h2>
+                                <p className="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-widest mt-1">Complete form ecosystem from atoms to auth templates.</p>
                             </div>
 
                             <div className="grid grid-cols-1 xl:grid-cols-2 gap-12">
@@ -754,7 +763,7 @@ export function ComponentGallery() {
                                     <h3 className="text-sm font-black uppercase text-emerald-600 tracking-[0.2em] border-l-4 border-emerald-600 pl-4">06.3 Input Groups (Addons)</h3>
                                     <div className="space-y-4">
                                         <InputGroup placeholder="Search inventory..." prefixIcon={Package} />
-                                        <InputGroup placeholder="your-domain" suffixElement={<span className="text-[10px] font-black uppercase tracking-widest text-slate-400">.ns.io</span>} />
+                                        <InputGroup placeholder="your-domain" suffixElement={<span className="text-[12px] font-black uppercase tracking-widest text-slate-400">.ns.io</span>} />
                                         <InputGroup type="password" placeholder="API Secret" prefixIcon={Lock} suffixIcon={Eye} />
                                         <InputGroup placeholder="Discount Code" suffixElement={<Button variant="brand" size="sm" className="h-8 rounded-xl px-4">Apply</Button>} />
                                     </div>
@@ -767,8 +776,8 @@ export function ComponentGallery() {
                                     >
                                         <div className="flex items-center justify-between">
                                             <div>
-                                                <p className="font-black text-slate-900 uppercase text-xs tracking-tight">Delete this repository</p>
-                                                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Once deleted, it cannot be recovered.</p>
+                                                <p className="font-black text-slate-900 dark:text-white uppercase text-xs tracking-tight">Delete this repository</p>
+                                                <p className="text-[12px] font-bold text-slate-400 uppercase tracking-widest mt-1">Once deleted, it cannot be recovered.</p>
                                             </div>
                                         </div>
                                     </ActionPanel>
@@ -776,15 +785,15 @@ export function ComponentGallery() {
                                 <div className="grid grid-cols-1 gap-16">
                                     <h3 className="text-sm font-black uppercase text-emerald-600 tracking-[0.2em] border-l-4 border-emerald-600 pl-4">06.5 Authentication Full-Page Templates</h3>
                                     <div className="space-y-6">
-                                        <p className="text-center text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Sign-In Pattern</p>
+                                        <p className="text-center text-[12px] font-black text-slate-400 uppercase tracking-[0.3em]">Sign-In Pattern</p>
                                         <SignInForm className="border-2 border-slate-200" />
                                     </div>
                                     <div className="space-y-6">
-                                        <p className="text-center text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Multi-Column Registration Pattern</p>
+                                        <p className="text-center text-[12px] font-black text-slate-400 uppercase tracking-[0.3em]">Multi-Column Registration Pattern</p>
                                         <RegistrationForm className="border-2 border-slate-200" />
                                     </div>
                                     <div className="space-y-6">
-                                        <p className="text-center text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Field Validation Pattern</p>
+                                        <p className="text-center text-[12px] font-black text-slate-400 uppercase tracking-[0.3em]">Field Validation Pattern</p>
                                         <ValidatedForm className="border-2 border-slate-200" />
                                     </div>
                                 </div>
@@ -795,9 +804,9 @@ export function ComponentGallery() {
                     {/* TABLES SECTION */}
                     {activeTab === 'tables' && (
                         <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-500 text-left">
-                            <div className="border-b border-slate-200 pb-4">
-                                <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">07. Table Ecosystem</h2>
-                                <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">Comprehensive list of 20+ utility-first table styles.</p>
+                            <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
+                                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">07. Table Ecosystem</h2>
+                                <p className="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-widest mt-1">Comprehensive list of 20+ utility-first table styles.</p>
                             </div>
 
                             {/* DYNAMIC DATA TABLE */}
@@ -889,7 +898,7 @@ export function ComponentGallery() {
                                                             <TableCell><Checkbox /></TableCell>
                                                             <TableCell className="font-black">NODE-{i * 100}</TableCell>
                                                             <TableCell className="text-emerald-500 font-mono">{10 + i}ms</TableCell>
-                                                            <TableCell className="text-slate-500 uppercase text-[10px] font-bold">99.99%</TableCell>
+                                                            <TableCell className="text-slate-500 uppercase text-[12px] font-bold">99.99%</TableCell>
                                                         </TableRow>
                                                     ))}
                                                 </TableBody>
@@ -925,8 +934,8 @@ export function ComponentGallery() {
                                             </TableBody>
                                             <TableFooter>
                                                 <TableRow>
-                                                    <TableCell className="font-black text-[10px] uppercase">Summary</TableCell>
-                                                    <TableCell colSpan={2} className="text-right font-black text-[10px] uppercase text-slate-400">Showing 1 of 1 records</TableCell>
+                                                    <TableCell className="font-black text-[12px] uppercase">Summary</TableCell>
+                                                    <TableCell colSpan={2} className="text-right font-black text-[12px] uppercase text-slate-400">Showing 1 of 1 records</TableCell>
                                                 </TableRow>
                                             </TableFooter>
                                         </Table>
@@ -949,12 +958,12 @@ export function ComponentGallery() {
                                                         <div className="flex items-center gap-3">
                                                             <Avatar fallback="LH" size="sm" />
                                                             <div>
-                                                                <p className="font-black text-slate-900 leading-none">Leon Hunt</p>
-                                                                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">leon@example.com</p>
+                                                                <p className="font-black text-slate-900 dark:text-white leading-none">Leon Hunt</p>
+                                                                <p className="text-[12px] font-bold text-slate-400 uppercase tracking-widest mt-1">leon@example.com</p>
                                                             </div>
                                                         </div>
                                                     </TableCell>
-                                                    <TableCell className="text-[10px] font-black uppercase text-slate-500">Product Manager</TableCell>
+                                                    <TableCell className="text-[12px] font-black uppercase text-slate-500">Product Manager</TableCell>
                                                     <TableCell><Badge variant="success">Active</Badge></TableCell>
                                                     <TableCell>
                                                         <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
@@ -967,12 +976,12 @@ export function ComponentGallery() {
                                                         <div className="flex items-center gap-3">
                                                             <Avatar fallback="KM" size="sm" variant="outline" />
                                                             <div>
-                                                                <p className="font-black text-slate-900 leading-none">Kelly Moon</p>
-                                                                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">kelly@example.com</p>
+                                                                <p className="font-black text-slate-900 dark:text-white leading-none">Kelly Moon</p>
+                                                                <p className="text-[12px] font-bold text-slate-400 uppercase tracking-widest mt-1">kelly@example.com</p>
                                                             </div>
                                                         </div>
                                                     </TableCell>
-                                                    <TableCell className="text-[10px] font-black uppercase text-slate-500">Tech Lead</TableCell>
+                                                    <TableCell className="text-[12px] font-black uppercase text-slate-500">Tech Lead</TableCell>
                                                     <TableCell><Badge variant="warning">On Leave</Badge></TableCell>
                                                     <TableCell>
                                                         <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
@@ -1024,23 +1033,23 @@ export function ComponentGallery() {
                                             {[1, 2].map(i => (
                                                 <Card key={i} className="p-4 space-y-3">
                                                     <div className="flex justify-between items-center border-b border-slate-100 pb-2">
-                                                        <span className="font-black text-[10px] uppercase text-slate-400">Order ID</span>
-                                                        <span className="font-bold text-slate-900">#ORD-672{i}</span>
+                                                        <span className="font-black text-[12px] uppercase text-slate-400">Order ID</span>
+                                                        <span className="font-bold text-slate-900 dark:text-white">#ORD-672{i}</span>
                                                     </div>
                                                     <div className="flex justify-between items-center border-b border-slate-100 pb-2">
-                                                        <span className="font-black text-[10px] uppercase text-slate-400">Customer</span>
-                                                        <span className="font-bold text-slate-900">John Doe</span>
+                                                        <span className="font-black text-[12px] uppercase text-slate-400">Customer</span>
+                                                        <span className="font-bold text-slate-900 dark:text-white">John Doe</span>
                                                     </div>
                                                     <div className="flex justify-between items-center">
-                                                        <span className="font-black text-[10px] uppercase text-slate-400">Status</span>
+                                                        <span className="font-black text-[12px] uppercase text-slate-400">Status</span>
                                                         <Badge variant="success">Delivered</Badge>
                                                     </div>
                                                 </Card>
                                             ))}
                                             <p className="text-center text-[9px] font-bold text-slate-400 uppercase tracking-widest italic pt-2">Rows transform to cards on small screens</p>
                                         </div>
-                                        <div className="hidden md:block bg-slate-50 p-12 rounded-[32px] border-2 border-dashed border-slate-200 text-center">
-                                            <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Resize viewport to mobile to see stacked view</p>
+                                        <div className="hidden md:block bg-slate-50 dark:bg-slate-900/50 p-12 rounded-[32px] border-2 border-dashed border-slate-200 dark:border-slate-800 text-center">
+                                            <p className="text-[12px] font-black uppercase text-slate-400 tracking-widest">Resize viewport to mobile to see stacked view</p>
                                         </div>
                                     </div>
 
@@ -1091,15 +1100,15 @@ export function ComponentGallery() {
                                             <Table condensed borderless className="bg-slate-50/50 shadow-none border-0">
                                                 <TableBody>
                                                     <TableRow className="bg-transparent">
-                                                        <TableCell className="font-bold text-slate-400 text-[10px] uppercase">Plan</TableCell>
+                                                        <TableCell className="font-bold text-slate-400 text-[12px] uppercase">Plan</TableCell>
                                                         <TableCell className="text-right font-black">Enterprise Pro</TableCell>
                                                     </TableRow>
                                                     <TableRow className="bg-transparent">
-                                                        <TableCell className="font-bold text-slate-400 text-[10px] uppercase">Renewal</TableCell>
+                                                        <TableCell className="font-bold text-slate-400 text-[12px] uppercase">Renewal</TableCell>
                                                         <TableCell className="text-right font-black text-blue-600">Jan 12, 2027</TableCell>
                                                     </TableRow>
                                                     <TableRow className="bg-transparent">
-                                                        <TableCell className="font-bold text-slate-400 text-[10px] uppercase">Usage</TableCell>
+                                                        <TableCell className="font-bold text-slate-400 text-[12px] uppercase">Usage</TableCell>
                                                         <TableCell className="text-right font-black">89% Cap</TableCell>
                                                     </TableRow>
                                                 </TableBody>
@@ -1111,10 +1120,10 @@ export function ComponentGallery() {
                             {/* SYSTEM EVENTS - MOVED FROM ORGANISMS */}
                             <div className="space-y-8">
                                 <h3 className="text-sm font-black uppercase text-amber-600 tracking-[0.2em] border-l-4 border-amber-600 pl-4">07.5 Data Logs</h3>
-                                <div className="bg-white rounded-[32px] border border-slate-200 shadow-sm overflow-hidden text-left">
-                                    <div className="p-8 border-b border-slate-100 flex justify-between items-center bg-slate-50/30">
+                                <div className="bg-white dark:bg-slate-900 rounded-[32px] border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden text-left">
+                                    <div className="p-8 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center bg-slate-50/30 dark:bg-slate-950/30">
                                         <div>
-                                            <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight">System Events</h3>
+                                            <h3 className="text-lg font-black text-slate-900 dark:text-white uppercase tracking-tight">System Events</h3>
                                             <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Journal of current production activities</p>
                                         </div>
                                         <div className="flex gap-2">
@@ -1138,8 +1147,8 @@ export function ComponentGallery() {
                                                 { type: 'API_GATEWAY_ERR', time: '12:46:12', status: 'Failure', val: '2ms' },
                                             ].map((row) => (
                                                 <TableRow key={row.type}>
-                                                    <TableCell className="font-black text-slate-900">{row.type}</TableCell>
-                                                    <TableCell className="text-slate-500 font-bold uppercase tracking-tight text-[10px]">{row.time}</TableCell>
+                                                    <TableCell className="font-black text-slate-900 dark:text-white">{row.type}</TableCell>
+                                                    <TableCell className="text-slate-500 font-bold uppercase tracking-tight text-[12px]">{row.time}</TableCell>
                                                     <TableCell>
                                                         <Badge variant={row.status === 'Success' ? 'success' : row.status === 'Failure' ? 'destructive' : 'warning'}>
                                                             {row.status}
@@ -1159,7 +1168,7 @@ export function ComponentGallery() {
                     {activeTab === 'display' && (
                         <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-500 text-left">
                             <div className="border-b border-slate-200 pb-4">
-                                <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">08. Data Display</h2>
+                                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">08. Data Display</h2>
                                 <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">Information-rich components for data visualization.</p>
                             </div>
 
@@ -1213,7 +1222,7 @@ export function ComponentGallery() {
                     {activeTab === 'kpi' && (
                         <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-500 text-left">
                             <div className="border-b border-slate-200 pb-4">
-                                <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">09. Key Performance Indicators</h2>
+                                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">09. Key Performance Indicators</h2>
                                 <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">High-impact summary data and metric visualizations.</p>
                             </div>
 
@@ -1302,7 +1311,7 @@ export function ComponentGallery() {
                     {activeTab === 'application' && (
                         <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
                             <div className="border-b border-slate-200 pb-4 text-left">
-                                <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">11. Application UI</h2>
+                                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">11. Application UI</h2>
                                 <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">Composite layouts and dashboard specific tools.</p>
                             </div>
 
@@ -1322,7 +1331,7 @@ export function ComponentGallery() {
                                         <div className="flex items-center justify-between p-4 bg-emerald-50 rounded-2xl border border-emerald-100">
                                             <div>
                                                 <p className="text-xs font-black text-emerald-900 uppercase">Primary Cluster</p>
-                                                <p className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest mt-0.5">Optimal Performance</p>
+                                                <p className="text-[12px] font-bold text-emerald-600 uppercase tracking-widest mt-0.5">Optimal Performance</p>
                                             </div>
                                             <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
                                         </div>
@@ -1336,53 +1345,97 @@ export function ComponentGallery() {
                         </div>
                     )}
 
-                    {/* SHELLS SECTION */}
-                    {activeTab === 'shells' && (
-                        <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500 text-left">
-                            <div className="border-b border-slate-200 pb-4">
-                                <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">12. Application Shells</h2>
-                                <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">High-level structural frameworks for entire applications.</p>
+                    {/* CAROUSEL SECTION */}
+                    {activeTab === 'carousel' && (
+                        <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-500 text-left">
+                            <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
+                                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">13. Carousel Systems</h2>
+                                <p className="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-widest mt-1">Flexible content sliders with custom navigation.</p>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                <Card className="hover:border-emerald-500 transition-colors group cursor-pointer" onClick={() => setActiveShell('sidebar')}>
-                                    <CardHeader>
-                                        <CardTitle className="group-hover:text-emerald-600">Sidebar Shell</CardTitle>
-                                        <CardDescription>Collapsible left-nav architecture</CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <div className="aspect-video bg-slate-100 rounded-2xl flex items-center justify-center">
-                                            <Button variant="outline" size="sm">Launch Preview</Button>
-                                        </div>
-                                    </CardContent>
-                                </Card>
+                            <div className="space-y-12">
+                                <div className="space-y-6">
+                                    <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4">13.1 Standard Carousel</h3>
+                                    <Carousel
+                                        items={[
+                                            <div className="h-64 bg-slate-900 flex items-center justify-center text-white p-12">
+                                                <div className="text-center">
+                                                    <h3 className="text-2xl font-black uppercase tracking-tight mb-2">Enterprise Cloud v4.0</h3>
+                                                    <p className="text-white/60 text-sm uppercase tracking-widest">Next-generation infrastructure management</p>
+                                                </div>
+                                            </div>,
+                                            <div className="h-64 bg-blue-600 flex items-center justify-center text-white p-12">
+                                                <div className="text-center">
+                                                    <h3 className="text-2xl font-black uppercase tracking-tight mb-2">Global Edge Grid</h3>
+                                                    <p className="text-white/60 text-sm uppercase tracking-widest">Ultra-low latency content delivery</p>
+                                                </div>
+                                            </div>,
+                                            <div className="h-64 bg-emerald-600 flex items-center justify-center text-white p-12">
+                                                <div className="text-center">
+                                                    <h3 className="text-2xl font-black uppercase tracking-tight mb-2">Zero-Trust Security</h3>
+                                                    <p className="text-white/60 text-sm uppercase tracking-widest">Advanced identity and access control</p>
+                                                </div>
+                                            </div>
+                                        ]}
+                                    />
+                                </div>
 
-                                <Card className="hover:border-emerald-500 transition-colors group cursor-pointer" onClick={() => setActiveShell('stacked')}>
-                                    <CardHeader>
-                                        <CardTitle className="group-hover:text-emerald-600">Stacked Shell</CardTitle>
-                                        <CardDescription>Top-navigation centered architecture</CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <div className="aspect-video bg-slate-100 rounded-2xl flex items-center justify-center">
-                                            <Button variant="outline" size="sm">Launch Preview</Button>
-                                        </div>
-                                    </CardContent>
-                                </Card>
+                                <div className="space-y-6">
+                                    <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4">13.2 Multi-Slide (3 Items)</h3>
+                                    <Carousel
+                                        slidesToShow={3}
+                                        items={[
+                                            <div className="h-40 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex flex-col items-center justify-center border border-amber-200 dark:border-amber-800">
+                                                <Zap className="h-8 w-8 text-amber-600 mb-2" />
+                                                <p className="font-black text-[12px] uppercase text-amber-900 dark:text-amber-100">Compute</p>
+                                            </div>,
+                                            <div className="h-40 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex flex-col items-center justify-center border border-blue-200 dark:border-blue-800">
+                                                <Database className="h-8 w-8 text-blue-600 mb-2" />
+                                                <p className="font-black text-[12px] uppercase text-blue-900 dark:text-blue-100">Storage</p>
+                                            </div>,
+                                            <div className="h-40 bg-emerald-100 dark:bg-emerald-900/30 rounded-2xl flex flex-col items-center justify-center border border-emerald-200 dark:border-emerald-800">
+                                                <Shield className="h-8 w-8 text-emerald-600 mb-2" />
+                                                <p className="font-black text-[12px] uppercase text-emerald-900 dark:text-emerald-100">Proxy</p>
+                                            </div>,
+                                            <div className="h-40 bg-purple-100 dark:bg-purple-900/30 rounded-2xl flex flex-col items-center justify-center border border-purple-200 dark:border-purple-800">
+                                                <Globe className="h-8 w-8 text-purple-600 mb-2" />
+                                                <p className="font-black text-[12px] uppercase text-purple-900 dark:text-purple-100">Edge</p>
+                                            </div>,
+                                            <div className="h-40 bg-rose-100 dark:bg-rose-900/30 rounded-2xl flex flex-col items-center justify-center border border-rose-200 dark:border-rose-800">
+                                                <Cpu className="h-8 w-8 text-rose-600 mb-2" />
+                                                <p className="font-black text-[12px] uppercase text-rose-900 dark:text-rose-100">Server</p>
+                                            </div>
+                                        ]}
+                                    />
+                                </div>
 
-                                <Card>
-                                    <CardHeader>
-                                        <CardTitle>Multi-Column</CardTitle>
-                                        <CardDescription>Flexible 3-column content grid</CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <div className="aspect-video bg-slate-100 rounded-2xl p-4 flex gap-2">
-                                            <div className="w-1/4 h-full bg-slate-200 rounded-lg animate-pulse" />
-                                            <div className="w-1/2 h-full bg-slate-200 rounded-lg animate-pulse" />
-                                            <div className="w-1/4 h-full bg-slate-200 rounded-lg animate-pulse" />
-                                        </div>
-                                        <p className="mt-4 text-[10px] font-black uppercase text-slate-400 text-center tracking-widest">Structural Utility</p>
-                                    </CardContent>
-                                </Card>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div className="space-y-6">
+                                        <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4">13.3 Content Cards</h3>
+                                        <Carousel
+                                            autoPlay={false}
+                                            items={[
+                                                <Card className="border-0 rounded-none shadow-none bg-slate-900 p-8 h-48 flex items-center justify-center text-white">
+                                                    <p className="text-center font-bold text-slate-300">"The most robust UI library for enterprise applications we've ever used."</p>
+                                                </Card>,
+                                                <Card className="border-0 rounded-none shadow-none bg-slate-900 p-8 h-48 flex items-center justify-center text-white">
+                                                    <p className="text-center font-bold text-slate-300">"Reduced our development time by nearly 40% in the first quarter."</p>
+                                                </Card>
+                                            ]}
+                                        />
+                                    </div>
+                                    <div className="space-y-6">
+                                        <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4">13.4 Rapid Intervals</h3>
+                                        <Carousel
+                                            interval={2000}
+                                            items={[
+                                                <div className="h-48 bg-purple-600 flex items-center justify-center text-white font-black text-3xl">FAST 1</div>,
+                                                <div className="h-48 bg-rose-600 flex items-center justify-center text-white font-black text-3xl">FAST 2</div>,
+                                                <div className="h-48 bg-amber-600 flex items-center justify-center text-white font-black text-3xl">FAST 3</div>
+                                            ]}
+                                        />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     )}
@@ -1390,7 +1443,7 @@ export function ComponentGallery() {
                     {activeTab === 'sections' && (
                         <div className="space-y-24 animate-in fade-in slide-in-from-bottom-4 duration-500">
                             <div className="border-b border-slate-200 pb-4 text-left">
-                                <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">00. Page Sections</h2>
+                                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">00. Page Sections</h2>
                                 <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">High-level page components for marketing websites.</p>
                             </div>
 
@@ -1470,7 +1523,7 @@ export function ComponentGallery() {
 
                             {/* STRUCTURAL ELEMENTS */}
                             <div className="border-b border-slate-200 pb-4 text-left mt-12">
-                                <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">00.2 Structural Elements</h2>
+                                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">00.2 Structural Elements</h2>
                                 <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">Headers, Footers, and Error Pages.</p>
                             </div>
 
@@ -1514,7 +1567,7 @@ export function ComponentGallery() {
                     {activeTab === 'interactive' && (
                         <div className="space-y-24 animate-in fade-in slide-in-from-bottom-4 duration-500">
                             <div className="border-b border-slate-200 pb-4 text-left">
-                                <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">00.3 Interactive Elements</h2>
+                                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">00.3 Interactive Elements</h2>
                                 <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">Headless UI components with JavaScript behavior.</p>
                             </div>
 
@@ -1588,6 +1641,54 @@ export function ComponentGallery() {
 
                         </div>
                     )}
+
+                    {/* AI Preview SECTION */}
+                    {activeTab === 'ai' && (
+                        <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-500 text-left">
+                            <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
+                                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">14. AI Integration</h2>
+                                <p className="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-widest mt-1">Intelligent components and assistant interfaces.</p>
+                            </div>
+
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                                <div className="space-y-8">
+                                    <h3 className="text-sm font-black uppercase text-indigo-600 tracking-[0.2em] border-l-4 border-indigo-600 pl-4">14.1 AI Assistant Operator</h3>
+                                    <div className="bg-slate-100 dark:bg-slate-800/50 p-12 rounded-[32px] border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center text-center space-y-6">
+                                        <div className="relative">
+                                            <div className="absolute -inset-4 bg-indigo-500/20 blur-3xl rounded-full" />
+                                            <AIOperator />
+                                        </div>
+                                        <div className="space-y-2 relative">
+                                            <p className="font-black text-slate-900 dark:text-white uppercase">Interactive AI Operator</p>
+                                            <p className="text-[12px] font-bold text-slate-400 uppercase tracking-widest max-w-xs">
+                                                Click the smiley button to launch the AI Assistant overlay.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="space-y-8">
+                                    <h3 className="text-sm font-black uppercase text-indigo-600 tracking-[0.2em] border-l-4 border-indigo-600 pl-4">14.2 AI Context Awareness</h3>
+                                    <Card className="bg-gradient-to-br from-indigo-50 to-white dark:from-indigo-950/20 dark:to-slate-900 overflow-hidden">
+                                        <CardContent className="p-8 space-y-6">
+                                            <div className="flex items-center gap-3">
+                                                <Sparkles className="h-5 w-5 text-indigo-600" />
+                                                <p className="text-[12px] font-black uppercase text-indigo-600 tracking-widest">System Insights</p>
+                                            </div>
+                                            <div className="space-y-4">
+                                                <div className="p-4 bg-white/50 dark:bg-slate-800/50 rounded-2xl border border-indigo-100 dark:border-indigo-900/50 shadow-sm">
+                                                    <p className="text-sm font-bold text-slate-600 dark:text-slate-300">"Your production cluster is performing at 98% efficiency. AI suggests optimizing node 14 for cost savings."</p>
+                                                </div>
+                                                <Button variant="outline" className="w-full rounded-xl border-indigo-200 dark:border-indigo-900 text-indigo-600 dark:text-indigo-400 font-black uppercase text-xs tracking-widest">
+                                                    View AI Analysis
+                                                </Button>
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </Container>
             </main>
 
@@ -1615,8 +1716,8 @@ export function ComponentGallery() {
                 <div className="space-y-6">
                     <div className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100">
                         <div>
-                            <p className="text-sm font-black text-slate-900 uppercase tracking-tight">Dark Mode</p>
-                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Sync with system</p>
+                            <p className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-tight">Dark Mode</p>
+                            <p className="text-[12px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Sync with system</p>
                         </div>
                         <Switch checked={switchState} onCheckedChange={setSwitchState} />
                     </div>

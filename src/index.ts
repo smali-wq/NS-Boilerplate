@@ -23,7 +23,10 @@ export * from './components/molecules/Card'
 export * from './components/molecules/StatsCard'
 export * from './components/molecules/EmptyState'
 export * from './components/molecules/InputGroup'
+export * from "./components/molecules/MediaObject"
 export * from './components/molecules/ActionPanel'
+export * from './components/molecules/Carousel'
+export * from "./components/molecules/AIOperator"
 
 // Organisms
 export * from './components/organisms/Modal'

@@ -15,8 +15,8 @@ export function SignInForm({ className }: { className?: string }) {
             <div className="h-2 bg-blue-600 w-full" />
             <CardHeader className="pt-10 pb-4 text-center">
                 <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black shadow-lg shadow-blue-600/20 mx-auto mb-4">UB</div>
-                <CardTitle className="text-2xl font-black text-slate-900 uppercase tracking-tight">Welcome Back</CardTitle>
-                <CardDescription className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Enterprise Access Portal</CardDescription>
+                <CardTitle className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">Welcome Back</CardTitle>
+                <CardDescription className="text-[12px] font-bold text-slate-400 uppercase tracking-widest mt-1">Enterprise Access Portal</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6 px-8">
                 <div className="grid grid-cols-2 gap-4">
@@ -34,8 +34,8 @@ export function SignInForm({ className }: { className?: string }) {
                 </div>
 
                 <div className="relative">
-                    <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-slate-100" /></div>
-                    <div className="relative flex justify-center text-[9px] uppercase font-black"><span className="bg-white px-2 text-slate-400 tracking-[0.2em]">Or continue with</span></div>
+                    <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-slate-100 dark:border-slate-800" /></div>
+                    <div className="relative flex justify-center text-[9px] uppercase font-black"><span className="bg-white dark:bg-slate-900 px-2 text-slate-400 dark:text-slate-500 tracking-[0.2em]">Or continue with</span></div>
                 </div>
 
                 <div className="space-y-4">
@@ -61,9 +61,9 @@ export function SignInForm({ className }: { className?: string }) {
                     Sign In <ArrowRight size={18} />
                 </Button>
             </CardContent>
-            <CardFooter className="bg-slate-50/50 border-t border-slate-100 justify-center py-6">
-                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                    New here? <a href="#" className="text-blue-600 font-black hover:underline">Create an account</a>
+            <CardFooter className="bg-slate-50/50 dark:bg-slate-950/50 border-t border-slate-100 dark:border-slate-800 justify-center py-6">
+                <p className="text-[12px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                    New here? <a href="#" className="text-blue-600 dark:text-blue-400 font-black hover:underline">Create an account</a>
                 </p>
             </CardFooter>
         </Card>
@@ -75,8 +75,8 @@ export function RegistrationForm({ className }: { className?: string }) {
         <Card className={cn("w-full max-w-xl mx-auto overflow-hidden", className)}>
             <div className="h-2 bg-emerald-500 w-full" />
             <CardHeader className="pt-10 pb-8 px-10">
-                <CardTitle className="text-3xl font-black text-slate-900 uppercase tracking-tight">Create Account</CardTitle>
-                <CardDescription className="text-sm font-medium text-slate-500 mt-2">Join 10,000+ teams building on our enterprise foundation.</CardDescription>
+                <CardTitle className="text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tight">Create Account</CardTitle>
+                <CardDescription className="text-sm font-medium text-slate-500 dark:text-slate-400 mt-2">Join 10,000+ teams building on our enterprise foundation.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-8 px-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -106,13 +106,13 @@ export function RegistrationForm({ className }: { className?: string }) {
                     } />
                 </div>
 
-                <div className="p-6 bg-slate-50 rounded-[32px] border border-slate-100 space-y-4">
-                    <h4 className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em]">Security Requirements</h4>
+                <div className="p-6 bg-slate-50 dark:bg-slate-950/50 rounded-[32px] border border-slate-100 dark:border-slate-800 space-y-4">
+                    <h4 className="text-[9px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">Security Requirements</h4>
                     <div className="grid grid-cols-2 gap-3">
                         {['Min 8 characters', 'One uppercase', 'One symbol', 'One number'].map(req => (
                             <div key={req} className="flex items-center gap-2">
-                                <div className="w-1.5 h-1.5 rounded-full bg-slate-300" />
-                                <span className="text-[10px] font-bold text-slate-600 uppercase">{req}</span>
+                                <div className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700" />
+                                <span className="text-[12px] font-bold text-slate-600 dark:text-slate-400 uppercase">{req}</span>
                             </div>
                         ))}
                     </div>
@@ -120,7 +120,7 @@ export function RegistrationForm({ className }: { className?: string }) {
 
                 <div className="flex items-start space-x-3">
                     <Checkbox id="terms" className="mt-1" />
-                    <Label htmlFor="terms" className="mb-0 text-[10px] normal-case font-medium text-slate-500 tracking-normal leading-relaxed">
+                    <Label htmlFor="terms" className="mb-0 text-[12px] normal-case font-medium text-slate-500 tracking-normal leading-relaxed">
                         I agree to the <a href="#" className="font-black text-blue-600">Enterprise Terms of Service</a> and acknowledge the <a href="#" className="font-black text-blue-600">Privacy Policy</a>.
                     </Label>
                 </div>
@@ -129,9 +129,9 @@ export function RegistrationForm({ className }: { className?: string }) {
                     Get Started Now
                 </Button>
             </CardContent>
-            <CardFooter className="bg-slate-50/50 border-t border-slate-100 justify-center py-6">
-                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                    Already have an account? <a href="#" className="text-blue-600 font-black hover:underline">Log in here</a>
+            <CardFooter className="bg-slate-50/50 dark:bg-slate-950/50 border-t border-slate-100 dark:border-slate-800 justify-center py-6">
+                <p className="text-[12px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                    Already have an account? <a href="#" className="text-blue-600 dark:text-blue-400 font-black hover:underline">Log in here</a>
                 </p>
             </CardFooter>
         </Card>

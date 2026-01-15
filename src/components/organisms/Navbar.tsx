@@ -25,7 +25,7 @@ export function Navbar({
     const [isOpen, setIsOpen] = useState(false)
 
     return (
-        <nav className={cn("bg-[#0F172A] border-b border-white/5", className)}>
+        <nav className={cn("bg-[#0F172A] dark:bg-black border-b border-white/5", className)}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-20">
                     <div className="flex items-center gap-8">

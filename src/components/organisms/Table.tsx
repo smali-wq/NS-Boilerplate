@@ -18,14 +18,14 @@ const Table = React.forwardRef<
 >(({ className, striped, condensed, borderless, stickyHeader, fullWidth = true, ...props }, ref) => (
     <div className={cn(
         "relative overflow-auto rounded-3xl",
-        !borderless && "border border-slate-200 shadow-sm bg-white",
+        !borderless && "border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 shadow-sm",
         fullWidth ? "w-full" : "w-max"
     )}>
         <table
             ref={ref}
             className={cn(
                 "w-full caption-bottom text-sm text-left border-collapse",
-                striped && "[&_tbody_tr:nth-child(even)]:bg-slate-50/50",
+                striped && "[&_tbody_tr:nth-child(even)]:bg-slate-50/50 dark:[&_tbody_tr:nth-child(even)]:bg-slate-800/50",
                 condensed && "[&_td]:py-2 [&_th]:py-2",
                 className
             )}
@@ -42,8 +42,8 @@ const TableHeader = React.forwardRef<
     <thead
         ref={ref}
         className={cn(
-            "[&_tr]:border-b border-slate-200 bg-slate-50/50 transition-colors",
-            sticky && "sticky top-0 z-10 bg-white/80 backdrop-blur-md",
+            "[&_tr]:border-b border-slate-200 bg-slate-50/50 transition-colors dark:border-slate-800 dark:bg-slate-900/50",
+            sticky && "sticky top-0 z-10 bg-white/80 backdrop-blur-md dark:bg-slate-900/80",
             className
         )}
         {...props}
@@ -70,7 +70,7 @@ const TableFooter = React.forwardRef<
     <tfoot
         ref={ref}
         className={cn(
-            "border-t border-slate-200 bg-slate-50 font-medium [&>tr]:last:border-b-0",
+            "border-t border-slate-200 bg-slate-50 font-medium [&>tr]:last:border-b-0 dark:border-slate-800 dark:bg-slate-900",
             className
         )}
         {...props}
@@ -85,7 +85,7 @@ const TableRow = React.forwardRef<
     <tr
         ref={ref}
         className={cn(
-            "border-b border-slate-100 transition-colors hover:bg-slate-50/50 data-[state=selected]:bg-slate-100",
+            "border-b border-slate-100 dark:border-slate-800 transition-colors hover:bg-slate-50/50 dark:hover:bg-slate-800/50 data-[state=selected]:bg-slate-100 dark:data-[state=selected]:bg-slate-800",
             className
         )}
         {...props}

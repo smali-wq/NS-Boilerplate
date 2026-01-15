@@ -30,14 +30,14 @@ const features = [
 
 export function FeatureGrid() {
     return (
-        <section className="bg-white py-24 sm:py-32">
+        <section className="bg-white dark:bg-slate-950 py-24 sm:py-32">
             <Container>
                 <div className="mx-auto max-w-2xl lg:text-center">
                     <h2 className="text-base font-semibold leading-7 text-blue-600 uppercase tracking-widest">Deploy faster</h2>
-                    <p className="mt-2 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
+                    <p className="mt-2 text-3xl font-black tracking-tight text-slate-900 dark:text-white sm:text-4xl">
                         Everything you need to deploy your app
                     </p>
-                    <p className="mt-6 text-lg leading-8 text-slate-600">
+                    <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400">
                         Quis tellus eget adipiscing convallis sit sit eget aliquet quis. Suspendisse eget egestas a elementum
                         pulvinar et feugiat blandit at. In mi viverra elit nunc.
                     </p>
@@ -46,13 +46,13 @@ export function FeatureGrid() {
                     <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
                         {features.map((feature) => (
                             <div key={feature.name} className="flex flex-col text-left">
-                                <dt className="flex items-center gap-x-3 text-base font-bold leading-7 text-slate-900 uppercase">
+                                <dt className="flex items-center gap-x-3 text-base font-bold leading-7 text-slate-900 dark:text-white uppercase">
                                     <div className="h-10 w-10 flex items-center justify-center rounded-lg bg-blue-600">
                                         <feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
                                     </div>
                                     {feature.name}
                                 </dt>
-                                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-slate-600">
+                                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-slate-600 dark:text-slate-400">
                                     <p className="flex-auto">{feature.description}</p>
                                     <p className="mt-6">
                                         <a href="#" className="text-sm font-semibold leading-6 text-blue-600">
@@ -89,19 +89,19 @@ const featuresThree = [
 
 export function FeatureThreeCol() {
     return (
-        <section className="bg-slate-50 py-24 sm:py-32">
+        <section className="bg-slate-50 dark:bg-slate-900 py-24 sm:py-32">
             <Container>
                 <div className="mx-auto max-w-2xl lg:text-center mb-16">
-                    <h2 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">Everything you need</h2>
+                    <h2 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white sm:text-4xl">Everything you need</h2>
                 </div>
                 <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                     {featuresThree.map((feature) => (
-                        <div key={feature.name} className="relative bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                            <div className="h-12 w-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 mb-6">
+                        <div key={feature.name} className="relative bg-white dark:bg-slate-950 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-md transition-shadow">
+                            <div className="h-12 w-12 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-6">
                                 <feature.icon className="h-6 w-6" />
                             </div>
-                            <h3 className="text-lg font-bold text-slate-900 uppercase tracking-tight">{feature.name}</h3>
-                            <p className="mt-2 text-slate-600 text-sm leading-relaxed">{feature.description}</p>
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-white uppercase tracking-tight">{feature.name}</h3>
+                            <p className="mt-2 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{feature.description}</p>
                         </div>
                     ))}
                 </div>

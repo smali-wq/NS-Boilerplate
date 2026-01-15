@@ -3,13 +3,13 @@ import { Container } from '../layouts/LayoutElements'
 
 export function HeroSimple() {
     return (
-        <section className="bg-white text-center py-20 lg:py-32">
+        <section className="bg-white dark:bg-slate-950 text-center py-20 lg:py-32">
             <Container>
-                <h1 className="text-4xl font-black tracking-tight text-slate-900 sm:text-6xl mb-6">
+                <h1 className="text-4xl font-black tracking-tight text-slate-900 dark:text-white sm:text-6xl mb-6">
                     Data to enrich your <br />
                     <span className="text-blue-600">online business</span>
                 </h1>
-                <p className="mt-6 text-lg leading-8 text-slate-600 max-w-2xl mx-auto">
+                <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
                     Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.
                 </p>
                 <div className="mt-10 flex items-center justify-center gap-x-6">
@@ -45,7 +45,7 @@ export function HeroSplit() {
                     </div>
                 </div>
                 <div className="relative lg:ml-auto">
-                    <div className="relative rounded-2xl bg-white/5 border border-white/10 p-2 shadow-2xl">
+                    <div className="relative rounded-2xl bg-white/5 dark:bg-slate-900/50 border border-white/10 dark:border-slate-800 p-2 shadow-2xl">
                         <div className="absolute -top-12 -left-12 w-24 h-24 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
                         <div className="absolute -bottom-12 -right-12 w-24 h-24 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
                         <img

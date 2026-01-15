@@ -39,7 +39,7 @@ export function Modal({ isOpen, onClose, children, className }: ModalProps) {
             />
             <div
                 className={cn(
-                    "relative w-full max-w-lg bg-white rounded-[32px] shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 slide-in-from-bottom-4 duration-300 border border-white/20",
+                    "relative w-full max-w-lg bg-white dark:bg-slate-900 rounded-[32px] shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 slide-in-from-bottom-4 duration-300 border border-white/20 dark:border-slate-800",
                     className
                 )}
             >
@@ -61,15 +61,15 @@ export function ModalHeader({
     icon?: React.ReactNode
 }) {
     return (
-        <div className="p-8 pb-4 flex items-start justify-between border-b border-slate-100 bg-slate-50/50">
+        <div className="p-8 pb-4 flex items-start justify-between border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
             <div className="flex items-center space-x-5">
                 {icon && (
-                    <div className="p-3.5 bg-white rounded-2xl shadow-sm text-blue-600 border border-slate-100">
+                    <div className="p-3.5 bg-white dark:bg-slate-800 rounded-2xl shadow-sm text-blue-600 dark:text-blue-400 border border-slate-100 dark:border-slate-700">
                         {icon}
                     </div>
                 )}
                 <div>
-                    <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">{title}</h2>
+                    <h2 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tight">{title}</h2>
                     {description && (
                         <p className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-widest">{description}</p>
                     )}
@@ -78,7 +78,7 @@ export function ModalHeader({
             {onClose && (
                 <button
                     onClick={onClose}
-                    className="p-2 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-all"
+                    className="p-2 text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all"
                 >
                     <X className="w-5 h-5" />
                 </button>
@@ -111,7 +111,7 @@ export function ModalFooter({
     return (
         <div
             className={cn(
-                "p-8 pt-4 bg-slate-50/50 border-t border-slate-100 flex items-center justify-end space-x-4",
+                "p-8 pt-4 bg-slate-50/50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end space-x-4",
                 className
             )}
         >

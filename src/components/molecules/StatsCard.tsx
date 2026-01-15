@@ -29,18 +29,18 @@ export function StatsCard({
     className
 }: StatsCardProps) {
     const themes = {
-        blue: "text-blue-600 bg-blue-50 border-blue-100",
-        emerald: "text-emerald-600 bg-emerald-50 border-emerald-100",
-        amber: "text-amber-600 bg-amber-50 border-amber-100",
-        indigo: "text-indigo-600 bg-indigo-50 border-indigo-100",
-        rose: "text-rose-600 bg-rose-50 border-rose-100",
-        slate: "text-slate-600 bg-slate-50 border-slate-100",
+        blue: "text-blue-600 bg-blue-50 border-blue-100 dark:bg-blue-950/30 dark:border-blue-900",
+        emerald: "text-emerald-600 bg-emerald-50 border-emerald-100 dark:bg-emerald-950/30 dark:border-emerald-900",
+        amber: "text-amber-600 bg-amber-50 border-amber-100 dark:bg-amber-950/30 dark:border-amber-900",
+        indigo: "text-indigo-600 bg-indigo-50 border-indigo-100 dark:bg-indigo-950/30 dark:border-indigo-900",
+        rose: "text-rose-600 bg-rose-50 border-rose-100 dark:bg-rose-950/30 dark:border-rose-900",
+        slate: "text-slate-600 bg-slate-50 border-slate-100 dark:bg-slate-800 dark:border-slate-700",
     }
 
     const variants = {
-        default: "bg-white border-slate-200",
+        default: "bg-white border-slate-200 dark:bg-slate-900 dark:border-slate-800",
         flat: cn(themes[color], "border-transparent"),
-        outline: "bg-transparent border-slate-200 shadow-none",
+        outline: "bg-transparent border-slate-200 dark:border-slate-800 shadow-none",
         brand: "bg-slate-900 text-white border-slate-800",
     }
 
@@ -58,7 +58,7 @@ export function StatsCard({
                     )}>{title}</p>
                     <h3 className={cn(
                         "text-2xl font-black tracking-tight",
-                        variant === 'brand' ? "text-white" : "text-slate-900"
+                        variant === 'brand' ? "text-white" : "text-slate-900 dark:text-white"
                     )}>{value}</h3>
                 </div>
                 {Icon && (
@@ -74,9 +74,9 @@ export function StatsCard({
                 <div className="mt-4 flex items-center space-x-2">
                     <div className={cn(
                         "flex items-center text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider",
-                        trend === 'up' ? "bg-emerald-50 text-emerald-700" :
-                            trend === 'down' ? "bg-red-50 text-red-700" :
-                                "bg-slate-50 text-slate-500"
+                        trend === 'up' ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400" :
+                            trend === 'down' ? "bg-red-50 text-red-700 dark:bg-red-950/30 dark:text-red-400" :
+                                "bg-slate-50 text-slate-500 dark:bg-slate-800 dark:text-slate-400"
                     )}>
                         {trend === 'up' && <ArrowUpRight size={10} className="mr-1" />}
                         {trend === 'down' && <ArrowDownRight size={10} className="mr-1" />}
