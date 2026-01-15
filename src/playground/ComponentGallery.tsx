@@ -731,7 +731,7 @@ export function ComponentGallery() {
                                                 <CardDescription>FormField grouping with labels and validation.</CardDescription>
                                             </CardHeader>
                                             <CardContent className="space-y-4">
-                                                <FormField id="sm1" label="Organization Name" placeholder="Happometer Inc." />
+                                                <FormField id="sm1" label="Organization Name" placeholder="NS Inc." />
                                                 <FormField id="sm2" label="Recovery Email" error="Please enter a valid email address" defaultValue="invalid-email" />
                                             </CardContent>
                                         </Card>
@@ -754,7 +754,7 @@ export function ComponentGallery() {
                                     <h3 className="text-sm font-black uppercase text-emerald-600 tracking-[0.2em] border-l-4 border-emerald-600 pl-4">06.3 Input Groups (Addons)</h3>
                                     <div className="space-y-4">
                                         <InputGroup placeholder="Search inventory..." prefixIcon={Package} />
-                                        <InputGroup placeholder="your-domain" suffixElement={<span className="text-[10px] font-black uppercase tracking-widest text-slate-400">.happometer.io</span>} />
+                                        <InputGroup placeholder="your-domain" suffixElement={<span className="text-[10px] font-black uppercase tracking-widest text-slate-400">.ns.io</span>} />
                                         <InputGroup type="password" placeholder="API Secret" prefixIcon={Lock} suffixIcon={Eye} />
                                         <InputGroup placeholder="Discount Code" suffixElement={<Button variant="brand" size="sm" className="h-8 rounded-xl px-4">Apply</Button>} />
                                     </div>

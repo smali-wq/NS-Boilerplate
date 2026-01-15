@@ -1,4 +1,4 @@
-# Happometer UI Boilerplate
+# NS UI Boilerplate
 
 A standalone, staff-level React UI component library extracted and standardized for high-scale reuse.
 
