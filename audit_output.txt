@@ -1,0 +1,632 @@
+Line | Change | Depths (D/C/M/E) | Content
+3    | E+1      | 0/0/0/1 | import {
+11   | E-1      | 0/0/0/0 | } from 'lucide-react'
+44   | E+1      | 0/0/0/1 | import {
+46   | E-1      | 0/0/0/0 | } from '../components/organisms/Table'
+94   | E+1      | 0/0/0/1 | export function ComponentGallery() {
+103  | E+1      | 0/0/0/2 | useEffect(() => {
+105  | E+1      | 0/0/0/3 | if (savedMode === 'dark' || (!savedMode && window.matchMedia('(prefers-color-sch
+107  | E-1      | 0/0/0/2 | }
+108  | E-1      | 0/0/0/1 | }, [])
+111  | E+1      | 0/0/0/2 | useEffect(() => {
+112  | E+1      | 0/0/0/3 | if (darkMode) {
+118  | E-1      | 0/0/0/2 | }
+119  | E-1      | 0/0/0/1 | }, [darkMode])
+125  | E+1      | 0/0/0/2 | const addNotification = (title: string, type: 'success' | 'error' | 'info' | 'wa
+128  | E-1      | 0/0/0/1 | }
+132  | E+1      | 0/0/0/2 | useEffect(() => {
+135  | E-1      | 0/0/0/1 | }, [])
+137  | E+1      | 0/0/0/2 | const saveScreen = (screen: any) => {
+143  | E-1      | 0/0/0/1 | }
+145  | E+1      | 0/0/0/2 | const deleteScreen = (id: number) => {
+149  | E-1      | 0/0/0/1 | }
+162  | E+1      | 0/0/0/2 | if (activeShell === 'sidebar') {
+165  | E+1      | 0/0/0/3 | navigation={[
+170  | E-1      | 0/0/0/2 | ]}
+173  | D+1      | 1/0/0/2 | <div className="space-y-8">
+175  | D+1      | 2/0/0/2 | <div className="text-left">
+178  | D-1      | 1/0/0/2 | </div>
+181  | D+1      | 2/0/0/2 | <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+185  | D-1      | 1/0/0/2 | </div>
+186  | D-1      | 0/0/0/2 | </div>
+189  | E-1      | 0/0/0/1 | }
+191  | E+1      | 0/0/0/2 | if (activeShell === 'stacked') {
+194  | E+1      | 0/0/0/3 | navigation={[
+199  | E-1      | 0/0/0/2 | ]}
+201  | D+1      | 1/0/0/2 | <div className="space-y-8 text-left">
+203  | D+1      | 2/0/0/2 | <div>
+206  | D-1      | 1/0/0/2 | </div>
+218  | D-1      | 0/0/0/2 | </div>
+221  | E-1      | 0/0/0/1 | }
+224  | D+1      | 1/0/0/1 | <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors dur
+227  | D+1      | 2/0/0/1 | <div className="flex items-center space-x-4 shrink-0">
+229  | D+1      | 3/0/0/1 | <div>
+232  | D-1      | 2/0/0/1 | </div>
+233  | D-1      | 1/0/0/1 | </div>
+235  | D+1      | 2/0/0/1 | <div className="flex-1 max-w-xl">
+237  | D-1      | 1/0/0/1 | </div>
+239  | D+1      | 2/0/0/1 | <div className="flex gap-4 items-center overflow-x-auto no-scrollbar">
+271  | D-1      | 1/0/0/1 | </div>
+274  | M+1      | 1/0/1/1 | <main className="pt-32 pb-20 px-8">
+275  | C+1      | 1/1/1/1 | <Container>
+277  | E+1      | 1/1/1/2 | {activeTab === 'theme' && (
+278  | D+1      | 2/1/1/2 | <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-50
+279  | D+1      | 3/1/1/2 | <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
+282  | D-1      | 2/1/1/2 | </div>
+284  | D-1      | 1/1/1/2 | </div>
+285  | E-1      | 1/1/1/1 | )}
+288  | E+1      | 1/1/1/2 | {activeTab === 'layout' && (
+289  | D+1      | 2/1/1/2 | <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-50
+290  | D+1      | 3/1/1/2 | <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
+293  | D-1      | 2/1/1/2 | </div>
+295  | D+1      | 3/1/1/2 | <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+297  | D+1      | 4/1/1/2 | <div className="space-y-8">
+299  | D+1      | 5/1/1/2 | <div className="space-y-4">
+300  | D+1      | 6/1/1/2 | <div className="bg-slate-100 dark:bg-slate-800/50 rounded-2xl p-4 border border-
+301  | C+1      | 6/2/1/2 | <Container className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-bl
+303  | C-1      | 6/1/1/2 | </Container>
+304  | D-1      | 5/1/1/2 | </div>
+306  | D-1      | 4/1/1/2 | </div>
+307  | D-1      | 3/1/1/2 | </div>
+310  | D+1      | 4/1/1/2 | <div className="space-y-8">
+312  | D+1      | 5/1/1/2 | <div className="space-y-2">
+316  | D-1      | 4/1/1/2 | </div>
+317  | D-1      | 3/1/1/2 | </div>
+320  | D+1      | 4/1/1/2 | <div className="space-y-8">
+339  | D-1      | 3/1/1/2 | </div>
+342  | D+1      | 4/1/1/2 | <div className="space-y-8">
+358  | D-1      | 3/1/1/2 | </div>
+359  | D-1      | 2/1/1/2 | </div>
+360  | D-1      | 1/1/1/2 | </div>
+361  | E-1      | 1/1/1/1 | )}
+364  | E+1      | 1/1/1/2 | {activeTab === 'elements' && (
+365  | D+1      | 2/1/1/2 | <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-50
+366  | D+1      | 3/1/1/2 | <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
+369  | D-1      | 2/1/1/2 | </div>
+371  | D+1      | 3/1/1/2 | <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+373  | D+1      | 4/1/1/2 | <div className="space-y-8">
+380  | D+1      | 5/1/1/2 | <div className="flex flex-wrap gap-2">
+385  | D-1      | 4/1/1/2 | </div>
+386  | D+1      | 5/1/1/2 | <div className="space-y-3">
+393  | D-1      | 4/1/1/2 | </div>
+396  | D-1      | 3/1/1/2 | </div>
+399  | D+1      | 4/1/1/2 | <div className="space-y-8">
+406  | D+1      | 5/1/1/2 | <div className="flex items-center gap-3">
+410  | D-1      | 4/1/1/2 | </div>
+411  | D+1      | 5/1/1/2 | <div className="flex flex-wrap gap-2 pt-2">
+416  | D-1      | 4/1/1/2 | </div>
+419  | D-1      | 3/1/1/2 | </div>
+422  | D+1      | 4/1/1/2 | <div className="space-y-8">
+430  | E+1      | 4/1/1/3 | trigger={
+432  | E-1      | 4/1/1/2 | }
+433  | E+1      | 4/1/1/3 | items={[
+438  | E-1      | 4/1/1/2 | ]}
+442  | D-1      | 3/1/1/2 | </div>
+445  | D+1      | 4/1/1/2 | <div className="space-y-8 lg:col-span-2">
+447  | D+1      | 5/1/1/2 | <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+448  | D+1      | 6/1/1/2 | <div className="space-y-4">
+469  | D-1      | 5/1/1/2 | </div>
+470  | D+1      | 6/1/1/2 | <div className="space-y-4">
+487  | D-1      | 5/1/1/2 | </div>
+488  | D+1      | 6/1/1/2 | <div className="bg-white p-6 rounded-[32px] border border-slate-200 shadow-sm fl
+495  | D-1      | 5/1/1/2 | </div>
+496  | D-1      | 4/1/1/2 | </div>
+497  | D-1      | 3/1/1/2 | </div>
+498  | D-1      | 2/1/1/2 | </div>
+499  | D-1      | 1/1/1/2 | </div>
+500  | E-1      | 1/1/1/1 | )}
+503  | E+1      | 1/1/1/2 | {activeTab === 'navigation' && (
+504  | D+1      | 2/1/1/2 | <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-50
+505  | D+1      | 3/1/1/2 | <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
+508  | D-1      | 2/1/1/2 | </div>
+511  | D+1      | 3/1/1/2 | <div className="space-y-6">
+513  | D+1      | 4/1/1/2 | <div className="flex items-center gap-6 p-6 bg-slate-900 rounded-[32px] shadow-2
+515  | E+1      | 4/1/1/3 | trigger={
+516  | D+1      | 5/1/1/3 | <div className="flex items-center gap-2 px-4 py-2 text-[12px] font-black upperca
+518  | D-1      | 4/1/1/3 | </div>
+519  | E-1      | 4/1/1/2 | }
+520  | E+1      | 4/1/1/3 | categories={[
+521  | E+1      | 4/1/1/4 | {
+528  | E-1      | 4/1/1/3 | },
+529  | E+1      | 4/1/1/4 | {
+536  | E-1      | 4/1/1/3 | }
+537  | E-1      | 4/1/1/2 | ]}
+540  | D+1      | 5/1/1/2 | <div className="h-4 w-px bg-white/10" />
+544  | D-1      | 4/1/1/2 | </div>
+546  | E+1      | 4/1/1/3 | items={[
+551  | E-1      | 4/1/1/2 | ]}
+554  | D-1      | 3/1/1/2 | </div>
+555  | D+1      | 4/1/1/2 | <div className="bg-white dark:bg-slate-900 p-6 rounded-[32px] border border-slat
+564  | D-1      | 3/1/1/2 | </div>
+565  | D-1      | 2/1/1/2 | </div>
+567  | E-1      | 2/1/1/1 | }
+570  | E+1      | 2/1/1/2 | {
+571  |          | 2/1/1/2 | activeTab === 'overlays' && (
+572  | D+1      | 3/1/1/2 | <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-50
+573  | D+1      | 4/1/1/2 | <div className="border-b border-slate-200 pb-4">
+576  | D-1      | 3/1/1/2 | </div>
+578  | D+1      | 4/1/1/2 | <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+580  | D+1      | 5/1/1/2 | <div className="space-y-8">
+591  | D-1      | 4/1/1/2 | </div>
+594  | D+1      | 5/1/1/2 | <div className="space-y-8">
+608  | D-1      | 4/1/1/2 | </div>
+611  | D+1      | 5/1/1/2 | <div className="space-y-8 lg:col-span-2">
+613  | D+1      | 6/1/1/2 | <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+630  | D-1      | 5/1/1/2 | </div>
+631  | D-1      | 4/1/1/2 | </div>
+633  | E-1      | 4/1/1/1 | }
+636  | E+1      | 4/1/1/2 | {
+637  |          | 4/1/1/2 | activeTab === 'forms' && (
+638  | D+1      | 5/1/1/2 | <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-50
+639  | D+1      | 6/1/1/2 | <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
+642  | D-1      | 5/1/1/2 | </div>
+644  | D+1      | 6/1/1/2 | <div className="grid grid-cols-1 xl:grid-cols-2 gap-12">
+646  | D+1      | 7/1/1/2 | <div className="space-y-8">
+650  | D+1      | 8/1/1/2 | <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+651  | D+1      | 9/1/1/2 | <div className="space-y-2">
+654  | D-1      | 8/1/1/2 | </div>
+655  | D+1      | 9/1/1/2 | <div className="space-y-2">
+662  | D-1      | 8/1/1/2 | </div>
+663  | D-1      | 7/1/1/2 | </div>
+664  | D+1      | 8/1/1/2 | <div className="flex gap-12 p-6 bg-slate-50 rounded-[32px] border border-slate-1
+665  | D+1      | 9/1/1/2 | <div className="flex items-center gap-3">
+668  | D-1      | 8/1/1/2 | </div>
+669  | D+1      | 9/1/1/2 | <div className="flex items-center gap-3">
+672  | D-1      | 8/1/1/2 | </div>
+673  | D-1      | 7/1/1/2 | </div>
+674  | D+1      | 8/1/1/2 | <div className="space-y-2">
+677  | D-1      | 7/1/1/2 | </div>
+683  | D+1      | 8/1/1/2 | <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+707  | D-1      | 7/1/1/2 | </div>
+713  | E+1      | 7/1/1/3 | options={[
+717  | E-1      | 7/1/1/2 | ]}
+719  | D-1      | 6/1/1/2 | </div>
+722  | D+1      | 7/1/1/2 | <div className="space-y-8">
+724  | D+1      | 8/1/1/2 | <div className="space-y-4">
+729  | D-1      | 7/1/1/2 | </div>
+737  | D+1      | 8/1/1/2 | <div className="flex items-center justify-between">
+738  | D+1      | 9/1/1/2 | <div>
+741  | D-1      | 8/1/1/2 | </div>
+742  | D-1      | 7/1/1/2 | </div>
+744  | D-1      | 6/1/1/2 | </div>
+745  | D+1      | 7/1/1/2 | <div className="grid grid-cols-1 gap-16">
+747  | D+1      | 8/1/1/2 | <div className="space-y-6">
+750  | D-1      | 7/1/1/2 | </div>
+751  | D+1      | 8/1/1/2 | <div className="space-y-6">
+754  | D-1      | 7/1/1/2 | </div>
+755  | D+1      | 8/1/1/2 | <div className="space-y-6">
+758  | D-1      | 7/1/1/2 | </div>
+759  | D-1      | 6/1/1/2 | </div>
+760  | D-1      | 5/1/1/2 | </div>
+762  | E-1      | 5/1/1/1 | }
+765  | E+1      | 5/1/1/2 | {
+766  |          | 5/1/1/2 | activeTab === 'tables' && (
+767  | D+1      | 6/1/1/2 | <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-50
+768  | D+1      | 7/1/1/2 | <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
+771  | D-1      | 6/1/1/2 | </div>
+774  | D+1      | 7/1/1/2 | <div className="space-y-8">
+776  | D+1      | 8/1/1/2 | <div className="space-y-4">
+779  | E+1      | 8/1/1/3 | columns={[
+785  | E-1      | 8/1/1/2 | ]}
+786  | E+1      | 8/1/1/3 | data={[
+791  | E-1      | 8/1/1/2 | ]}
+793  | D-1      | 7/1/1/2 | </div>
+794  | D-1      | 6/1/1/2 | </div>
+797  | D+1      | 7/1/1/2 | <div className="space-y-8">
+799  | D+1      | 8/1/1/2 | <div className="grid grid-cols-1 gap-12">
+801  | D+1      | 9/1/1/2 | <div className="space-y-4">
+810  | D-1      | 8/1/1/2 | </div>
+813  | D+1      | 9/1/1/2 | <div className="space-y-4">
+823  | D-1      | 8/1/1/2 | </div>
+826  | D+1      | 9/1/1/2 | <div className="space-y-4">
+835  | D-1      | 8/1/1/2 | </div>
+836  | D-1      | 7/1/1/2 | </div>
+837  | D-1      | 6/1/1/2 | </div>
+840  | D+1      | 7/1/1/2 | <div className="space-y-8">
+842  | D+1      | 8/1/1/2 | <div className="grid grid-cols-1 gap-12">
+844  | D+1      | 9/1/1/2 | <div className="space-y-4">
+846  | D+1      | 10/1/1/2 | <div className="h-48 overflow-auto rounded-3xl border border-slate-200 shadow-sm
+857  | E+1      | 10/1/1/3 | {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
+864  | E-1      | 10/1/1/2 | ))}
+867  | D-1      | 9/1/1/2 | </div>
+868  | D-1      | 8/1/1/2 | </div>
+871  | D+1      | 9/1/1/2 | <div className="space-y-4">
+903  | D-1      | 8/1/1/2 | </div>
+904  | D-1      | 7/1/1/2 | </div>
+905  | D-1      | 6/1/1/2 | </div>
+908  | D+1      | 7/1/1/2 | <div className="space-y-8">
+910  | D+1      | 8/1/1/2 | <div className="grid grid-cols-1 gap-12">
+912  | D+1      | 9/1/1/2 | <div className="space-y-4">
+919  | D+1      | 10/1/1/2 | <div className="flex items-center gap-3">
+921  | D+1      | 11/1/1/2 | <div>
+924  | D-1      | 10/1/1/2 | </div>
+925  | D-1      | 9/1/1/2 | </div>
+930  | D+1      | 10/1/1/2 | <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+931  | D+1      | 11/1/1/2 | <div className="bg-emerald-500 h-full w-[85%]" />
+932  | D-1      | 10/1/1/2 | </div>
+937  | D+1      | 11/1/1/2 | <div className="flex items-center gap-3">
+939  | D+1      | 12/1/1/2 | <div>
+942  | D-1      | 11/1/1/2 | </div>
+943  | D-1      | 10/1/1/2 | </div>
+948  | D+1      | 11/1/1/2 | <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+949  | D+1      | 12/1/1/2 | <div className="bg-amber-500 h-full w-[45%]" />
+950  | D-1      | 11/1/1/2 | </div>
+955  | D-1      | 10/1/1/2 | </div>
+958  | D+1      | 11/1/1/2 | <div className="space-y-4">
+982  | D-1      | 10/1/1/2 | </div>
+983  | D-1      | 9/1/1/2 | </div>
+984  | D-1      | 8/1/1/2 | </div>
+987  | D+1      | 9/1/1/2 | <div className="space-y-8">
+989  | D+1      | 10/1/1/2 | <div className="grid grid-cols-1 gap-12">
+991  | D+1      | 11/1/1/2 | <div className="space-y-4">
+993  | D+1      | 12/1/1/2 | <div className="block md:hidden space-y-4">
+994  | E+1      | 12/1/1/3 | {[1, 2].map(i => (
+996  | D+1      | 13/1/1/3 | <div className="flex justify-between items-center border-b border-slate-100 pb-2
+999  | D-1      | 12/1/1/3 | </div>
+1000 | D+1      | 13/1/1/3 | <div className="flex justify-between items-center border-b border-slate-100 pb-2
+1003 | D-1      | 12/1/1/3 | </div>
+1004 | D+1      | 13/1/1/3 | <div className="flex justify-between items-center">
+1007 | D-1      | 12/1/1/3 | </div>
+1009 | E-1      | 12/1/1/2 | ))}
+1011 | D-1      | 11/1/1/2 | </div>
+1012 | D+1      | 12/1/1/2 | <div className="hidden md:block bg-slate-50 dark:bg-slate-900/50 p-12 rounded-[3
+1014 | D-1      | 11/1/1/2 | </div>
+1015 | D-1      | 10/1/1/2 | </div>
+1018 | D+1      | 11/1/1/2 | <div className="space-y-4">
+1027 | D-1      | 10/1/1/2 | </div>
+1030 | D+1      | 11/1/1/2 | <div className="space-y-4">
+1032 | D+1      | 12/1/1/2 | <div className="overflow-x-auto">
+1049 | D+1      | 13/1/1/2 | <TableCell><div className="flex items-center gap-1.5"><div className="w-2 h-2 bg
+1053 | D-1      | 12/1/1/2 | </div>
+1055 | D-1      | 11/1/1/2 | </div>
+1058 | D+1      | 12/1/1/2 | <div className="space-y-4">
+1060 | D+1      | 13/1/1/2 | <div className="max-w-md">
+1077 | D-1      | 12/1/1/2 | </div>
+1078 | D-1      | 11/1/1/2 | </div>
+1079 | D-1      | 10/1/1/2 | </div>
+1080 | D-1      | 9/1/1/2 | </div>
+1082 | D+1      | 10/1/1/2 | <div className="space-y-8">
+1084 | D+1      | 11/1/1/2 | <div className="bg-white dark:bg-slate-900 rounded-[32px] border border-slate-20
+1085 | D+1      | 12/1/1/2 | <div className="p-8 border-b border-slate-100 dark:border-slate-800 flex justify
+1086 | D+1      | 13/1/1/2 | <div>
+1089 | D-1      | 12/1/1/2 | </div>
+1090 | D+1      | 13/1/1/2 | <div className="flex gap-2">
+1093 | D-1      | 12/1/1/2 | </div>
+1094 | D-1      | 11/1/1/2 | </div>
+1105 | E+1      | 11/1/1/3 | {[
+1120 | E-1      | 11/1/1/2 | ))}
+1123 | D-1      | 10/1/1/2 | </div>
+1124 | D-1      | 9/1/1/2 | </div>
+1125 | D-1      | 8/1/1/2 | </div>
+1127 | E-1      | 8/1/1/1 | }
+1130 | E+1      | 8/1/1/2 | {
+1131 |          | 8/1/1/2 | activeTab === 'display' && (
+1132 | D+1      | 9/1/1/2 | <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-50
+1133 | D+1      | 10/1/1/2 | <div className="border-b border-slate-200 pb-4">
+1136 | D-1      | 9/1/1/2 | </div>
+1138 | D+1      | 10/1/1/2 | <div className="space-y-12">
+1140 | D+1      | 11/1/1/2 | <div className="space-y-6">
+1143 | E+1      | 11/1/1/3 | events={[
+1146 | E-1      | 11/1/1/2 | ]}
+1148 | D-1      | 10/1/1/2 | </div>
+1151 | D+1      | 11/1/1/2 | <div className="grid grid-cols-1 xl:grid-cols-2 gap-12">
+1152 | D+1      | 12/1/1/2 | <div className="space-y-6">
+1156 | E+1      | 12/1/1/3 | <Feed items={[
+1160 | E-1      | 12/1/1/2 | ]} />
+1163 | D-1      | 11/1/1/2 | </div>
+1165 | D+1      | 12/1/1/2 | <div className="space-y-6">
+1169 | E+1      | 12/1/1/3 | <DescriptionList items={[
+1173 | E-1      | 12/1/1/2 | ]} />
+1176 | D-1      | 11/1/1/2 | </div>
+1177 | D-1      | 10/1/1/2 | </div>
+1178 | D-1      | 9/1/1/2 | </div>
+1179 | D-1      | 8/1/1/2 | </div>
+1182 | E-1      | 8/1/1/1 | }
+1187 | E+1      | 8/1/1/2 | {
+1188 |          | 8/1/1/2 | activeTab === 'kpi' && (
+1189 | D+1      | 9/1/1/2 | <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-50
+1190 | D+1      | 10/1/1/2 | <div className="border-b border-slate-200 pb-4">
+1193 | D-1      | 9/1/1/2 | </div>
+1196 | D+1      | 10/1/1/2 | <div className="space-y-6">
+1198 | D+1      | 11/1/1/2 | <div className="relative group max-w-xl mx-auto">
+1199 | D+1      | 12/1/1/2 | <div className="overflow-hidden rounded-[32px]">
+1200 | D+1      | 13/1/1/2 | <div className="transition-transform duration-500 ease-out flex" style={{ transf
+1201 | E+1      | 13/1/1/3 | {kpiSlides.map((slide, idx) => (
+1202 | D+1      | 14/1/1/3 | <div key={idx} className="w-full flex-none">
+1213 | D-1      | 13/1/1/3 | </div>
+1214 | E-1      | 13/1/1/2 | ))}
+1215 | D-1      | 12/1/1/2 | </div>
+1216 | D-1      | 11/1/1/2 | </div>
+1233 | D+1      | 12/1/1/2 | <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5">
+1234 | E+1      | 12/1/1/3 | {kpiSlides.map((_, idx) => (
+1235 | D+1 E+1  | 13/1/1/4 | <div key={idx} className={cn(
+1238 | E-1      | 13/1/1/3 | )} />
+1239 | E-1      | 13/1/1/2 | ))}
+1240 | D-1      | 12/1/1/2 | </div>
+1241 | D-1      | 11/1/1/2 | </div>
+1242 | D-1      | 10/1/1/2 | </div>
+1245 | D+1      | 11/1/1/2 | <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+1249 | D-1      | 10/1/1/2 | </div>
+1251 | D+1      | 11/1/1/2 | <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+1252 | D+1      | 12/1/1/2 | <div className="space-y-6">
+1256 | D-1      | 11/1/1/2 | </div>
+1257 | D+1      | 12/1/1/2 | <div className="space-y-6">
+1261 | D-1      | 11/1/1/2 | </div>
+1262 | D+1      | 12/1/1/2 | <div className="space-y-6">
+1266 | D-1      | 11/1/1/2 | </div>
+1267 | D+1      | 12/1/1/2 | <div className="space-y-6">
+1271 | D-1      | 11/1/1/2 | </div>
+1272 | D-1      | 10/1/1/2 | </div>
+1273 | D-1      | 9/1/1/2 | </div>
+1275 | D-1      | 8/1/1/2 | </div>
+1277 | E-1      | 8/1/1/1 | }
+1280 | E+1      | 8/1/1/2 | {
+1281 |          | 8/1/1/2 | activeTab === 'application' && (
+1282 | D+1      | 9/1/1/2 | <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-50
+1283 | D+1      | 10/1/1/2 | <div className="border-b border-slate-200 pb-4 text-left">
+1286 | D-1      | 9/1/1/2 | </div>
+1288 | D+1      | 10/1/1/2 | <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+1301 | D+1      | 11/1/1/2 | <div className="flex items-center justify-between p-4 bg-emerald-50 rounded-2xl 
+1302 | D+1      | 12/1/1/2 | <div>
+1305 | D-1      | 11/1/1/2 | </div>
+1306 | D+1      | 12/1/1/2 | <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+1307 | D-1      | 11/1/1/2 | </div>
+1314 | D-1      | 10/1/1/2 | </div>
+1315 | D-1      | 9/1/1/2 | </div>
+1317 | D-1      | 8/1/1/2 | </div>
+1319 | E-1      | 8/1/1/1 | }
+1322 | E+1      | 8/1/1/2 | {
+1323 |          | 8/1/1/2 | activeTab === 'carousel' && (
+1324 | D+1      | 9/1/1/2 | <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-50
+1325 | D+1      | 10/1/1/2 | <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
+1328 | D-1      | 9/1/1/2 | </div>
+1330 | D+1      | 10/1/1/2 | <div className="space-y-12">
+1331 | D+1      | 11/1/1/2 | <div className="space-y-6">
+1334 | E+1      | 11/1/1/3 | items={[
+1335 | D+1      | 12/1/1/3 | <div className="h-64 bg-slate-900 flex items-center justify-center text-white p-
+1336 | D+1      | 13/1/1/3 | <div className="text-center">
+1339 | D-1      | 12/1/1/3 | </div>
+1340 | D-1      | 11/1/1/3 | </div>,
+1341 | D+1      | 12/1/1/3 | <div className="h-64 bg-blue-600 flex items-center justify-center text-white p-1
+1342 | D+1      | 13/1/1/3 | <div className="text-center">
+1345 | D-1      | 12/1/1/3 | </div>
+1346 | D-1      | 11/1/1/3 | </div>,
+1347 | D+1      | 12/1/1/3 | <div className="h-64 bg-emerald-600 flex items-center justify-center text-white 
+1348 | D+1      | 13/1/1/3 | <div className="text-center">
+1351 | D-1      | 12/1/1/3 | </div>
+1352 | D-1      | 11/1/1/3 | </div>
+1353 | E-1      | 11/1/1/2 | ]}
+1355 | D-1      | 10/1/1/2 | </div>
+1357 | D+1      | 11/1/1/2 | <div className="space-y-6">
+1361 | E+1      | 11/1/1/3 | items={[
+1362 | D+1      | 12/1/1/3 | <div className="h-40 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex flex-col
+1365 | D-1      | 11/1/1/3 | </div>,
+1366 | D+1      | 12/1/1/3 | <div className="h-40 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex flex-col i
+1369 | D-1      | 11/1/1/3 | </div>,
+1370 | D+1      | 12/1/1/3 | <div className="h-40 bg-emerald-100 dark:bg-emerald-900/30 rounded-2xl flex flex
+1373 | D-1      | 11/1/1/3 | </div>,
+1374 | D+1      | 12/1/1/3 | <div className="h-40 bg-purple-100 dark:bg-purple-900/30 rounded-2xl flex flex-c
+1377 | D-1      | 11/1/1/3 | </div>,
+1378 | D+1      | 12/1/1/3 | <div className="h-40 bg-rose-100 dark:bg-rose-900/30 rounded-2xl flex flex-col i
+1381 | D-1      | 11/1/1/3 | </div>
+1382 | E-1      | 11/1/1/2 | ]}
+1384 | D-1      | 10/1/1/2 | </div>
+1386 | D+1      | 11/1/1/2 | <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+1387 | D+1      | 12/1/1/2 | <div className="space-y-6">
+1391 | E+1      | 12/1/1/3 | items={[
+1398 | E-1      | 12/1/1/2 | ]}
+1400 | D-1      | 11/1/1/2 | </div>
+1401 | D+1      | 12/1/1/2 | <div className="space-y-6">
+1405 | E+1      | 12/1/1/3 | items={[
+1409 | E-1      | 12/1/1/2 | ]}
+1411 | D-1      | 11/1/1/2 | </div>
+1412 | D-1      | 10/1/1/2 | </div>
+1413 | D-1      | 9/1/1/2 | </div>
+1415 | E-1      | 9/1/1/1 | }
+1417 | E+1      | 9/1/1/2 | {
+1418 |          | 9/1/1/2 | activeTab === 'sections' && (
+1419 | D+1      | 10/1/1/2 | <div className="space-y-24 animate-in fade-in slide-in-from-bottom-4 duration-50
+1420 | D+1      | 11/1/1/2 | <div className="border-b border-slate-200 pb-4 text-left">
+1423 | D-1      | 10/1/1/2 | </div>
+1426 | D+1      | 11/1/1/2 | <div className="space-y-8">
+1428 | D+1      | 12/1/1/2 | <div className="space-y-12">
+1429 | D+1      | 13/1/1/2 | <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+1431 | D-1      | 12/1/1/2 | </div>
+1432 | D+1      | 13/1/1/2 | <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+1434 | D-1      | 12/1/1/2 | </div>
+1435 | D-1      | 11/1/1/2 | </div>
+1436 | D-1      | 10/1/1/2 | </div>
+1439 | D+1      | 11/1/1/2 | <div className="space-y-8">
+1441 | D+1      | 12/1/1/2 | <div className="space-y-12">
+1442 | D+1      | 13/1/1/2 | <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+1444 | D-1      | 12/1/1/2 | </div>
+1445 | D+1      | 13/1/1/2 | <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+1447 | D-1      | 12/1/1/2 | </div>
+1448 | D-1      | 11/1/1/2 | </div>
+1449 | D-1      | 10/1/1/2 | </div>
+1453 | D+1      | 11/1/1/2 | <div className="space-y-8">
+1455 | D+1      | 12/1/1/2 | <div className="space-y-12">
+1456 | D+1      | 13/1/1/2 | <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+1458 | D-1      | 12/1/1/2 | </div>
+1459 | D+1      | 13/1/1/2 | <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+1461 | D-1      | 12/1/1/2 | </div>
+1462 | D-1      | 11/1/1/2 | </div>
+1463 | D-1      | 10/1/1/2 | </div>
+1466 | D+1      | 11/1/1/2 | <div className="space-y-8">
+1468 | D+1      | 12/1/1/2 | <div className="space-y-12">
+1469 | D+1      | 13/1/1/2 | <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+1471 | D-1      | 12/1/1/2 | </div>
+1472 | D+1      | 13/1/1/2 | <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+1474 | D-1      | 12/1/1/2 | </div>
+1475 | D-1      | 11/1/1/2 | </div>
+1476 | D-1      | 10/1/1/2 | </div>
+1479 | D+1      | 11/1/1/2 | <div className="space-y-8">
+1481 | D+1      | 12/1/1/2 | <div className="space-y-12">
+1482 | D+1      | 13/1/1/2 | <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+1484 | D-1      | 12/1/1/2 | </div>
+1485 | D+1      | 13/1/1/2 | <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+1487 | D-1      | 12/1/1/2 | </div>
+1488 | D-1      | 11/1/1/2 | </div>
+1489 | D-1      | 10/1/1/2 | </div>
+1492 | D+1      | 11/1/1/2 | <div className="space-y-8">
+1494 | D+1      | 12/1/1/2 | <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+1496 | D-1      | 11/1/1/2 | </div>
+1497 | D-1      | 10/1/1/2 | </div>
+1500 | D+1      | 11/1/1/2 | <div className="border-b border-slate-200 pb-4 text-left mt-12">
+1503 | D-1      | 10/1/1/2 | </div>
+1506 | D+1      | 11/1/1/2 | <div className="space-y-8">
+1508 | D+1      | 12/1/1/2 | <div className="space-y-12">
+1509 | D+1      | 13/1/1/2 | <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-
+1511 | D-1      | 12/1/1/2 | </div>
+1512 | D+1      | 13/1/1/2 | <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-
+1515 | D-1      | 12/1/1/2 | </div>
+1516 | D-1      | 11/1/1/2 | </div>
+1517 | D-1      | 10/1/1/2 | </div>
+1520 | D+1      | 11/1/1/2 | <div className="space-y-8">
+1522 | D+1      | 12/1/1/2 | <div className="space-y-12">
+1523 | D+1      | 13/1/1/2 | <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+1525 | D-1      | 12/1/1/2 | </div>
+1526 | D+1      | 13/1/1/2 | <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+1528 | D-1      | 12/1/1/2 | </div>
+1529 | D-1      | 11/1/1/2 | </div>
+1530 | D-1      | 10/1/1/2 | </div>
+1533 | D+1      | 11/1/1/2 | <div className="space-y-8">
+1535 | D+1      | 12/1/1/2 | <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+1537 | D-1      | 11/1/1/2 | </div>
+1538 | D-1      | 10/1/1/2 | </div>
+1539 | D-1      | 9/1/1/2 | </div>
+1542 | E-1      | 9/1/1/1 | }
+1544 | E+1      | 9/1/1/2 | {
+1545 |          | 9/1/1/2 | activeTab === 'interactive' && (
+1546 | D+1      | 10/1/1/2 | <div className="space-y-24 animate-in fade-in slide-in-from-bottom-4 duration-50
+1547 | D+1      | 11/1/1/2 | <div className="border-b border-slate-200 pb-4 text-left">
+1550 | D-1      | 10/1/1/2 | </div>
+1553 | D+1      | 11/1/1/2 | <div className="space-y-8">
+1555 | D+1      | 12/1/1/2 | <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+1556 | D+1      | 13/1/1/2 | <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm
+1559 | D-1      | 12/1/1/2 | </div>
+1560 | D+1      | 13/1/1/2 | <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm
+1563 | D-1      | 12/1/1/2 | </div>
+1564 | D-1      | 11/1/1/2 | </div>
+1565 | D-1      | 10/1/1/2 | </div>
+1568 | D+1      | 11/1/1/2 | <div className="space-y-8">
+1570 | D+1      | 12/1/1/2 | <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+1571 | D+1      | 13/1/1/2 | <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm
+1574 | D-1      | 12/1/1/2 | </div>
+1575 | D+1      | 13/1/1/2 | <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm
+1578 | D-1      | 12/1/1/2 | </div>
+1579 | D+1      | 13/1/1/2 | <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm
+1582 | D-1      | 12/1/1/2 | </div>
+1583 | D-1      | 11/1/1/2 | </div>
+1584 | D-1      | 10/1/1/2 | </div>
+1587 | D+1      | 11/1/1/2 | <div className="space-y-8">
+1589 | D+1      | 12/1/1/2 | <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+1590 | D+1      | 13/1/1/2 | <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm
+1593 | D-1      | 12/1/1/2 | </div>
+1594 | D+1      | 13/1/1/2 | <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm
+1597 | D-1      | 12/1/1/2 | </div>
+1598 | D+1      | 13/1/1/2 | <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm
+1601 | D-1      | 12/1/1/2 | </div>
+1602 | D-1      | 11/1/1/2 | </div>
+1603 | D-1      | 10/1/1/2 | </div>
+1606 | D+1      | 11/1/1/2 | <div className="space-y-8">
+1608 | D+1      | 12/1/1/2 | <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+1609 | D+1      | 13/1/1/2 | <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm
+1612 | D-1      | 12/1/1/2 | </div>
+1613 | D+1      | 13/1/1/2 | <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm
+1616 | D-1      | 12/1/1/2 | </div>
+1617 | D-1      | 11/1/1/2 | </div>
+1618 | D-1      | 10/1/1/2 | </div>
+1620 | D-1      | 9/1/1/2 | </div>
+1623 | E-1      | 9/1/1/1 | }
+1626 | E+1      | 9/1/1/2 | {
+1627 |          | 9/1/1/2 | activeTab === 'screens' && (
+1628 | D+1      | 10/1/1/2 | <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-50
+1629 | D+1      | 11/1/1/2 | <div className="border-b border-slate-200 dark:border-slate-800 pb-4 flex justif
+1630 | D+1      | 12/1/1/2 | <div>
+1633 | D-1      | 11/1/1/2 | </div>
+1635 | D-1      | 10/1/1/2 | </div>
+1638 | D+1      | 11/1/1/2 | <div className="space-y-8 mb-16 pb-16 border-b border-slate-200 dark:border-slat
+1640 | D+1      | 12/1/1/2 | <div className="w-20 h-20 bg-blue-600/10 dark:bg-blue-500/10 rounded-[40px] flex
+1642 | D-1      | 11/1/1/2 | </div>
+1643 | D+1      | 12/1/1/2 | <div className="space-y-2">
+1648 | D-1      | 11/1/1/2 | </div>
+1651 | D-1      | 10/1/1/2 | </div>
+1653 | D+1      | 11/1/1/2 | <div className="pb-8">
+1656 | E+1      | 11/1/1/3 | {savedScreens.length === 0 ? (
+1657 | D+1      | 12/1/1/3 | <div className="py-20 flex flex-col items-center justify-center text-center bg-w
+1658 | D+1      | 13/1/1/3 | <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-2xl flex items-
+1660 | D-1      | 12/1/1/3 | </div>
+1663 | D-1      | 11/1/1/3 | </div>
+1665 | D+1      | 12/1/1/3 | <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+1666 | E+1      | 12/1/1/4 | {savedScreens.map(screen => (
+1669 | D+1      | 13/1/1/4 | <div className="h-48 bg-slate-100 dark:bg-slate-800 flex items-center justify-ce
+1670 | D+1      | 14/1/1/4 | <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-transparen
+1672 | D+1      | 15/1/1/4 | <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/40 transi
+1674 | D-1      | 14/1/1/4 | </div>
+1675 | D-1      | 13/1/1/4 | </div>
+1678 | D+1      | 14/1/1/4 | <div className="flex justify-between items-start mb-4">
+1679 | D+1      | 15/1/1/4 | <div>
+1684 | D-1      | 14/1/1/4 | </div>
+1686 | D-1      | 13/1/1/4 | </div>
+1687 | D+1      | 14/1/1/4 | <div className="flex gap-2 mt-6">
+1690 | D-1      | 13/1/1/4 | </div>
+1693 | E-1      | 13/1/1/3 | ))}
+1694 | D-1      | 12/1/1/3 | </div>
+1695 | E-1      | 12/1/1/2 | )}
+1696 | D-1      | 11/1/1/2 | </div>
+1699 | D+1      | 12/1/1/2 | <div className="space-y-12">
+1700 | D+1      | 13/1/1/2 | <div className="flex items-center gap-4">
+1701 | D+1      | 14/1/1/2 | <div className="h-px flex-1 bg-slate-200 dark:bg-slate-800" />
+1703 | D+1      | 15/1/1/2 | <div className="h-px flex-1 bg-slate-200 dark:bg-slate-800" />
+1704 | D-1      | 14/1/1/2 | </div>
+1706 | D+1      | 15/1/1/2 | <div className="space-y-8">
+1709 | D+1      | 16/1/1/2 | <div>
+1712 | D-1      | 15/1/1/2 | </div>
+1716 | D+1      | 16/1/1/2 | <div className="bg-slate-100 dark:bg-slate-900/50 p-12">
+1718 | D-1      | 15/1/1/2 | </div>
+1721 | D-1      | 14/1/1/2 | </div>
+1722 | D-1      | 13/1/1/2 | </div>
+1723 | D-1      | 12/1/1/2 | </div>
+1725 | E-1      | 12/1/1/1 | }
+1728 | E+1      | 12/1/1/2 | {
+1729 |          | 12/1/1/2 | activeTab === 'ai' && (
+1730 | D+1      | 13/1/1/2 | <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-50
+1731 | D+1      | 14/1/1/2 | <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
+1734 | D-1      | 13/1/1/2 | </div>
+1736 | D+1      | 14/1/1/2 | <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+1737 | D+1      | 15/1/1/2 | <div className="space-y-8">
+1739 | D+1      | 16/1/1/2 | <div className="bg-slate-100 dark:bg-slate-800/50 p-12 rounded-[32px] border bor
+1740 | D+1      | 17/1/1/2 | <div className="relative">
+1741 | D+1      | 18/1/1/2 | <div className="absolute -inset-4 bg-indigo-500/20 blur-3xl rounded-full" />
+1743 | D-1      | 17/1/1/2 | </div>
+1744 | D+1      | 18/1/1/2 | <div className="space-y-2 relative">
+1749 | D-1      | 17/1/1/2 | </div>
+1750 | D-1      | 16/1/1/2 | </div>
+1751 | D-1      | 15/1/1/2 | </div>
+1753 | D+1      | 16/1/1/2 | <div className="space-y-8">
+1757 | D+1      | 17/1/1/2 | <div className="flex items-center gap-3">
+1760 | D-1      | 16/1/1/2 | </div>
+1761 | D+1      | 17/1/1/2 | <div className="space-y-4">
+1762 | D+1      | 18/1/1/2 | <div className="p-4 bg-white/50 dark:bg-slate-800/50 rounded-2xl border border-i
+1764 | D-1      | 17/1/1/2 | </div>
+1768 | D-1      | 16/1/1/2 | </div>
+1771 | D-1      | 15/1/1/2 | </div>
+1772 | D-1      | 14/1/1/2 | </div>
+1774 | E-1      | 14/1/1/1 | }
+1775 | C-1      | 14/0/1/1 | </Container>
+1776 | M-1      | 14/0/0/1 | </main>
+1799 | D+1      | 15/0/0/1 | <div className="space-y-6">
+1800 | D+1      | 16/0/0/1 | <div className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl bo
+1801 | D+1      | 17/0/0/1 | <div>
+1804 | D-1      | 16/0/0/1 | </div>
+1806 | D-1      | 15/0/0/1 | </div>
+1807 | D-1      | 14/0/0/1 | </div>
+1811 | C+1      | 14/1/0/1 | <Container className="flex justify-between items-center text-slate-400 text-sm">
+1814 | C-1      | 14/0/0/1 | </Container>
+1817 | D+1      | 15/0/0/1 | <div className="fixed bottom-8 right-8 z-[100] flex flex-col gap-4 w-full max-w-
+1818 | E+1      | 15/0/0/2 | {notifications.map(n => (
+1820 | E-1      | 15/0/0/1 | ))}
+1821 | D-1      | 14/0/0/1 | </div>
+1822 | D-1      | 13/0/0/1 | </div>
+1824 | E-1      | 13/0/0/0 | }

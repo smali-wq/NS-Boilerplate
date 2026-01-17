@@ -7,7 +7,7 @@ import {
     FileText, Image as ImageIcon, Video, MoreHorizontal,
     CheckCircle2, Clock, AlertCircle, ChevronLeft, ChevronRight, Lock,
     Shield, Zap, Cloud, CreditCard, Terminal, Database, Cpu,
-    Info, AlertTriangle, Sun, Moon
+    Info, AlertTriangle, Sun, Moon, Sparkles
 } from 'lucide-react'
 
 // Atoms
@@ -238,9 +238,8 @@ export function ComponentGallery() {
                             <TabsTrigger value="shells" className="text-white/60 hover:text-white hover:bg-white/10 data-[state=active]:bg-emerald-600 data-[state=active]:text-white">Shells</TabsTrigger>
                             <TabsTrigger value="kpi" className="text-white/60 hover:text-white hover:bg-white/10 data-[state=active]:bg-rose-600 data-[state=active]:text-white">KPI</TabsTrigger>
                             <TabsTrigger value="application" className="text-white/60 hover:text-white hover:bg-white/10 data-[state=active]:bg-blue-600 data-[state=active]:text-white">App UI</TabsTrigger>
-                            <TabsTrigger value="ai" className="text-white/60 hover:text-white hover:bg-white/10 data-[state=active]:bg-indigo-400 data-[state=active]:text-slate-900">AI Preview</TabsTrigger>
                             <TabsTrigger value="theme" className="text-white/60 hover:text-white hover:bg-white/10 data-[state=active]:bg-white data-[state=active]:text-slate-900 font-bold">
-                                <span className="flex items-center gap-2"><Settings className="w-3 h-3" /> Theme</span>
+                                <Settings className="w-4 h-4" />
                             </TabsTrigger>
                         </TabsList>
                     </Tabs>
@@ -605,6 +604,7 @@ export function ComponentGallery() {
                             </div>
                         </div>
                     )}
+
 
 
                     {/* OVERLAYS SECTION */}
@@ -1165,6 +1165,7 @@ export function ComponentGallery() {
                     )}
 
                     {/* DISPLAY SECTION */}
+
                     {activeTab === 'display' && (
                         <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-500 text-left">
                             <div className="border-b border-slate-200 pb-4">
@@ -1214,100 +1215,105 @@ export function ComponentGallery() {
                                 </div>
                             </div>
                         </div>
-                    )}
+                    )
+                    }
 
 
 
                     {/* KPI SECTION */}
-                    {activeTab === 'kpi' && (
-                        <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-500 text-left">
-                            <div className="border-b border-slate-200 pb-4">
-                                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">09. Key Performance Indicators</h2>
-                                <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">High-impact summary data and metric visualizations.</p>
-                            </div>
+                    {
+                        activeTab === 'kpi' && (
+                            <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-500 text-left">
+                                <div className="border-b border-slate-200 pb-4">
+                                    <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">09. Key Performance Indicators</h2>
+                                    <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">High-impact summary data and metric visualizations.</p>
+                                </div>
 
-                            {/* KPI Carousel */}
-                            <div className="space-y-6">
-                                <h3 className="text-sm font-black uppercase text-rose-600 tracking-[0.2em] border-l-4 border-rose-600 pl-4">09.1 KPI Carousel</h3>
-                                <div className="relative group max-w-xl mx-auto">
-                                    <div className="overflow-hidden rounded-[32px]">
-                                        <div className="transition-transform duration-500 ease-out flex" style={{ transform: `translateX(-${kpiCarouselIndex * 100}%)` }}>
-                                            {kpiSlides.map((slide, idx) => (
-                                                <div key={idx} className="w-full flex-none">
-                                                    <StatsCard
-                                                        title={slide.title}
-                                                        value={slide.value}
-                                                        change={slide.change}
-                                                        trend={slide.trend}
-                                                        variant="brand"
-                                                        color={slide.color}
-                                                        icon={BarChart3}
-                                                        className="h-full border-0 rounded-none p-12"
-                                                    />
-                                                </div>
+                                {/* KPI Carousel */}
+                                <div className="space-y-6">
+                                    <h3 className="text-sm font-black uppercase text-rose-600 tracking-[0.2em] border-l-4 border-rose-600 pl-4">09.1 KPI Carousel</h3>
+                                    <div className="relative group max-w-xl mx-auto">
+                                        <div className="overflow-hidden rounded-[32px]">
+                                            <div className="transition-transform duration-500 ease-out flex" style={{ transform: `translateX(-${kpiCarouselIndex * 100}%)` }}>
+                                                {kpiSlides.map((slide, idx) => (
+                                                    <div key={idx} className="w-full flex-none">
+                                                        <StatsCard
+                                                            title={slide.title}
+                                                            value={slide.value}
+                                                            change={slide.change}
+                                                            trend={slide.trend}
+                                                            variant="brand"
+                                                            color={slide.color}
+                                                            icon={BarChart3}
+                                                            className="h-full border-0 rounded-none p-12"
+                                                        />
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <Button
+                                            variant="outline"
+                                            size="icon"
+                                            className="absolute left-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-white/20 backdrop-blur-md border-white/20 text-white hover:bg-white hover:text-slate-900"
+                                            onClick={prevKpi}
+                                        >
+                                            <ChevronLeft size={20} />
+                                        </Button>
+                                        <Button
+                                            variant="outline"
+                                            size="icon"
+                                            className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-white/20 backdrop-blur-md border-white/20 text-white hover:bg-white hover:text-slate-900"
+                                            onClick={nextKpi}
+                                        >
+                                            <ChevronRight size={20} />
+                                        </Button>
+                                        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5">
+                                            {kpiSlides.map((_, idx) => (
+                                                <div key={idx} className={cn(
+                                                    "h-1 rounded-full transition-all",
+                                                    kpiCarouselIndex === idx ? "w-6 bg-white" : "w-1.5 bg-white/30"
+                                                )} />
                                             ))}
                                         </div>
                                     </div>
-                                    <Button
-                                        variant="outline"
-                                        size="icon"
-                                        className="absolute left-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-white/20 backdrop-blur-md border-white/20 text-white hover:bg-white hover:text-slate-900"
-                                        onClick={prevKpi}
-                                    >
-                                        <ChevronLeft size={20} />
-                                    </Button>
-                                    <Button
-                                        variant="outline"
-                                        size="icon"
-                                        className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-white/20 backdrop-blur-md border-white/20 text-white hover:bg-white hover:text-slate-900"
-                                        onClick={nextKpi}
-                                    >
-                                        <ChevronRight size={20} />
-                                    </Button>
-                                    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5">
-                                        {kpiSlides.map((_, idx) => (
-                                            <div key={idx} className={cn(
-                                                "h-1 rounded-full transition-all",
-                                                kpiCarouselIndex === idx ? "w-6 bg-white" : "w-1.5 bg-white/30"
-                                            )} />
-                                        ))}
+                                </div>
+
+                                {/* Stats from Molecules */}
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                                    <StatsCard title="Total Revenue" value="$45,231.89" change="+20.1%" trend="up" icon={BarChart3} />
+                                    <StatsCard title="Active Subscriptions" value="1,200" change="-4.5%" trend="down" icon={Users} />
+                                    <StatsCard title="Conversion Rate" value="12.3%" change="+1.2%" trend="up" icon={Activity} />
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                                    <div className="space-y-6">
+                                        <h3 className="text-sm font-black uppercase text-rose-600 tracking-[0.2em] border-l-4 border-rose-600 pl-4">09.2 Flat Colors</h3>
+                                        <StatsCard title="Revenue" value="$42.5k" variant="flat" color="blue" icon={Activity} />
+                                        <StatsCard title="Growth" value="+18%" variant="flat" color="emerald" trend="up" change="4.2%" />
+                                    </div>
+                                    <div className="space-y-6">
+                                        <h3 className="text-sm font-black uppercase text-rose-600 tracking-[0.2em] border-l-4 border-rose-600 pl-4">09.3 Outline Styles</h3>
+                                        <StatsCard title="Nodes" value="1,042" variant="outline" color="indigo" icon={Globe} />
+                                        <StatsCard title="Alerts" value="0" variant="outline" color="slate" icon={Inbox} />
+                                    </div>
+                                    <div className="space-y-6">
+                                        <h3 className="text-sm font-black uppercase text-rose-600 tracking-[0.2em] border-l-4 border-rose-600 pl-4">09.4 Brand Dark</h3>
+                                        <StatsCard title="Security Score" value="A+" variant="brand" icon={CheckCircle2} />
+                                        <StatsCard title="Compliance" value="100%" variant="brand" color="emerald" />
+                                    </div>
+                                    <div className="space-y-6">
+                                        <h3 className="text-sm font-black uppercase text-rose-600 tracking-[0.2em] border-l-4 border-rose-600 pl-4">09.5 Vibrant</h3>
+                                        <StatsCard title="Danger Zone" value="EXPOSED" variant="flat" color="rose" icon={AlertCircle} trend="down" change="CRITICAL" />
+                                        <StatsCard title="New Orders" value="234" variant="flat" color="amber" icon={Package} trend="up" change="+12" />
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Stats from Molecules */}
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                                <StatsCard title="Total Revenue" value="$45,231.89" change="+20.1%" trend="up" icon={BarChart3} />
-                                <StatsCard title="Active Subscriptions" value="1,200" change="-4.5%" trend="down" icon={Users} />
-                                <StatsCard title="Conversion Rate" value="12.3%" change="+1.2%" trend="up" icon={Activity} />
-                            </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                                <div className="space-y-6">
-                                    <h3 className="text-sm font-black uppercase text-rose-600 tracking-[0.2em] border-l-4 border-rose-600 pl-4">09.2 Flat Colors</h3>
-                                    <StatsCard title="Revenue" value="$42.5k" variant="flat" color="blue" icon={Activity} />
-                                    <StatsCard title="Growth" value="+18%" variant="flat" color="emerald" trend="up" change="4.2%" />
-                                </div>
-                                <div className="space-y-6">
-                                    <h3 className="text-sm font-black uppercase text-rose-600 tracking-[0.2em] border-l-4 border-rose-600 pl-4">09.3 Outline Styles</h3>
-                                    <StatsCard title="Nodes" value="1,042" variant="outline" color="indigo" icon={Globe} />
-                                    <StatsCard title="Alerts" value="0" variant="outline" color="slate" icon={Inbox} />
-                                </div>
-                                <div className="space-y-6">
-                                    <h3 className="text-sm font-black uppercase text-rose-600 tracking-[0.2em] border-l-4 border-rose-600 pl-4">09.4 Brand Dark</h3>
-                                    <StatsCard title="Security Score" value="A+" variant="brand" icon={CheckCircle2} />
-                                    <StatsCard title="Compliance" value="100%" variant="brand" color="emerald" />
-                                </div>
-                                <div className="space-y-6">
-                                    <h3 className="text-sm font-black uppercase text-rose-600 tracking-[0.2em] border-l-4 border-rose-600 pl-4">09.5 Vibrant</h3>
-                                    <StatsCard title="Danger Zone" value="EXPOSED" variant="flat" color="rose" icon={AlertCircle} trend="down" change="CRITICAL" />
-                                    <StatsCard title="New Orders" value="234" variant="flat" color="amber" icon={Package} trend="up" change="+12" />
-                                </div>
-                            </div>
-                        </div>
-                    )}
+                        )
+                    }
 
                     {/* APPLICATION SECTION */}
+
                     {activeTab === 'application' && (
                         <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
                             <div className="border-b border-slate-200 pb-4 text-left">
@@ -1346,354 +1352,364 @@ export function ComponentGallery() {
                     )}
 
                     {/* CAROUSEL SECTION */}
-                    {activeTab === 'carousel' && (
-                        <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-500 text-left">
-                            <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
-                                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">13. Carousel Systems</h2>
-                                <p className="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-widest mt-1">Flexible content sliders with custom navigation.</p>
-                            </div>
 
-                            <div className="space-y-12">
-                                <div className="space-y-6">
-                                    <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4">13.1 Standard Carousel</h3>
-                                    <Carousel
-                                        items={[
-                                            <div className="h-64 bg-slate-900 flex items-center justify-center text-white p-12">
-                                                <div className="text-center">
-                                                    <h3 className="text-2xl font-black uppercase tracking-tight mb-2">Enterprise Cloud v4.0</h3>
-                                                    <p className="text-white/60 text-sm uppercase tracking-widest">Next-generation infrastructure management</p>
-                                                </div>
-                                            </div>,
-                                            <div className="h-64 bg-blue-600 flex items-center justify-center text-white p-12">
-                                                <div className="text-center">
-                                                    <h3 className="text-2xl font-black uppercase tracking-tight mb-2">Global Edge Grid</h3>
-                                                    <p className="text-white/60 text-sm uppercase tracking-widest">Ultra-low latency content delivery</p>
-                                                </div>
-                                            </div>,
-                                            <div className="h-64 bg-emerald-600 flex items-center justify-center text-white p-12">
-                                                <div className="text-center">
-                                                    <h3 className="text-2xl font-black uppercase tracking-tight mb-2">Zero-Trust Security</h3>
-                                                    <p className="text-white/60 text-sm uppercase tracking-widest">Advanced identity and access control</p>
-                                                </div>
-                                            </div>
-                                        ]}
-                                    />
+                    {
+                        activeTab === 'carousel' && (
+                            <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-500 text-left">
+                                <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
+                                    <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">13. Carousel Systems</h2>
+                                    <p className="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-widest mt-1">Flexible content sliders with custom navigation.</p>
                                 </div>
 
-                                <div className="space-y-6">
-                                    <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4">13.2 Multi-Slide (3 Items)</h3>
-                                    <Carousel
-                                        slidesToShow={3}
-                                        items={[
-                                            <div className="h-40 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex flex-col items-center justify-center border border-amber-200 dark:border-amber-800">
-                                                <Zap className="h-8 w-8 text-amber-600 mb-2" />
-                                                <p className="font-black text-[12px] uppercase text-amber-900 dark:text-amber-100">Compute</p>
-                                            </div>,
-                                            <div className="h-40 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex flex-col items-center justify-center border border-blue-200 dark:border-blue-800">
-                                                <Database className="h-8 w-8 text-blue-600 mb-2" />
-                                                <p className="font-black text-[12px] uppercase text-blue-900 dark:text-blue-100">Storage</p>
-                                            </div>,
-                                            <div className="h-40 bg-emerald-100 dark:bg-emerald-900/30 rounded-2xl flex flex-col items-center justify-center border border-emerald-200 dark:border-emerald-800">
-                                                <Shield className="h-8 w-8 text-emerald-600 mb-2" />
-                                                <p className="font-black text-[12px] uppercase text-emerald-900 dark:text-emerald-100">Proxy</p>
-                                            </div>,
-                                            <div className="h-40 bg-purple-100 dark:bg-purple-900/30 rounded-2xl flex flex-col items-center justify-center border border-purple-200 dark:border-purple-800">
-                                                <Globe className="h-8 w-8 text-purple-600 mb-2" />
-                                                <p className="font-black text-[12px] uppercase text-purple-900 dark:text-purple-100">Edge</p>
-                                            </div>,
-                                            <div className="h-40 bg-rose-100 dark:bg-rose-900/30 rounded-2xl flex flex-col items-center justify-center border border-rose-200 dark:border-rose-800">
-                                                <Cpu className="h-8 w-8 text-rose-600 mb-2" />
-                                                <p className="font-black text-[12px] uppercase text-rose-900 dark:text-rose-100">Server</p>
-                                            </div>
-                                        ]}
-                                    />
-                                </div>
-
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div className="space-y-12">
                                     <div className="space-y-6">
-                                        <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4">13.3 Content Cards</h3>
+                                        <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4">13.1 Standard Carousel</h3>
                                         <Carousel
-                                            autoPlay={false}
                                             items={[
-                                                <Card className="border-0 rounded-none shadow-none bg-slate-900 p-8 h-48 flex items-center justify-center text-white">
-                                                    <p className="text-center font-bold text-slate-300">"The most robust UI library for enterprise applications we've ever used."</p>
-                                                </Card>,
-                                                <Card className="border-0 rounded-none shadow-none bg-slate-900 p-8 h-48 flex items-center justify-center text-white">
-                                                    <p className="text-center font-bold text-slate-300">"Reduced our development time by nearly 40% in the first quarter."</p>
-                                                </Card>
+                                                <div className="h-64 bg-slate-900 flex items-center justify-center text-white p-12">
+                                                    <div className="text-center">
+                                                        <h3 className="text-2xl font-black uppercase tracking-tight mb-2">Enterprise Cloud v4.0</h3>
+                                                        <p className="text-white/60 text-sm uppercase tracking-widest">Next-generation infrastructure management</p>
+                                                    </div>
+                                                </div>,
+                                                <div className="h-64 bg-blue-600 flex items-center justify-center text-white p-12">
+                                                    <div className="text-center">
+                                                        <h3 className="text-2xl font-black uppercase tracking-tight mb-2">Global Edge Grid</h3>
+                                                        <p className="text-white/60 text-sm uppercase tracking-widest">Ultra-low latency content delivery</p>
+                                                    </div>
+                                                </div>,
+                                                <div className="h-64 bg-emerald-600 flex items-center justify-center text-white p-12">
+                                                    <div className="text-center">
+                                                        <h3 className="text-2xl font-black uppercase tracking-tight mb-2">Zero-Trust Security</h3>
+                                                        <p className="text-white/60 text-sm uppercase tracking-widest">Advanced identity and access control</p>
+                                                    </div>
+                                                </div>
                                             ]}
                                         />
                                     </div>
+
                                     <div className="space-y-6">
-                                        <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4">13.4 Rapid Intervals</h3>
+                                        <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4">13.2 Multi-Slide (3 Items)</h3>
                                         <Carousel
-                                            interval={2000}
+                                            slidesToShow={3}
                                             items={[
-                                                <div className="h-48 bg-purple-600 flex items-center justify-center text-white font-black text-3xl">FAST 1</div>,
-                                                <div className="h-48 bg-rose-600 flex items-center justify-center text-white font-black text-3xl">FAST 2</div>,
-                                                <div className="h-48 bg-amber-600 flex items-center justify-center text-white font-black text-3xl">FAST 3</div>
+                                                <div className="h-40 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex flex-col items-center justify-center border border-amber-200 dark:border-amber-800">
+                                                    <Zap className="h-8 w-8 text-amber-600 mb-2" />
+                                                    <p className="font-black text-[12px] uppercase text-amber-900 dark:text-amber-100">Compute</p>
+                                                </div>,
+                                                <div className="h-40 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex flex-col items-center justify-center border border-blue-200 dark:border-blue-800">
+                                                    <Database className="h-8 w-8 text-blue-600 mb-2" />
+                                                    <p className="font-black text-[12px] uppercase text-blue-900 dark:text-blue-100">Storage</p>
+                                                </div>,
+                                                <div className="h-40 bg-emerald-100 dark:bg-emerald-900/30 rounded-2xl flex flex-col items-center justify-center border border-emerald-200 dark:border-emerald-800">
+                                                    <Shield className="h-8 w-8 text-emerald-600 mb-2" />
+                                                    <p className="font-black text-[12px] uppercase text-emerald-900 dark:text-emerald-100">Proxy</p>
+                                                </div>,
+                                                <div className="h-40 bg-purple-100 dark:bg-purple-900/30 rounded-2xl flex flex-col items-center justify-center border border-purple-200 dark:border-purple-800">
+                                                    <Globe className="h-8 w-8 text-purple-600 mb-2" />
+                                                    <p className="font-black text-[12px] uppercase text-purple-900 dark:text-purple-100">Edge</p>
+                                                </div>,
+                                                <div className="h-40 bg-rose-100 dark:bg-rose-900/30 rounded-2xl flex flex-col items-center justify-center border border-rose-200 dark:border-rose-800">
+                                                    <Cpu className="h-8 w-8 text-rose-600 mb-2" />
+                                                    <p className="font-black text-[12px] uppercase text-rose-900 dark:text-rose-100">Server</p>
+                                                </div>
                                             ]}
                                         />
                                     </div>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                        <div className="space-y-6">
+                                            <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4">13.3 Content Cards</h3>
+                                            <Carousel
+                                                autoPlay={false}
+                                                items={[
+                                                    <Card className="border-0 rounded-none shadow-none bg-slate-900 p-8 h-48 flex items-center justify-center text-white">
+                                                        <p className="text-center font-bold text-slate-300">"The most robust UI library for enterprise applications we've ever used."</p>
+                                                    </Card>,
+                                                    <Card className="border-0 rounded-none shadow-none bg-slate-900 p-8 h-48 flex items-center justify-center text-white">
+                                                        <p className="text-center font-bold text-slate-300">"Reduced our development time by nearly 40% in the first quarter."</p>
+                                                    </Card>
+                                                ]}
+                                            />
+                                        </div>
+                                        <div className="space-y-6">
+                                            <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4">13.4 Rapid Intervals</h3>
+                                            <Carousel
+                                                interval={2000}
+                                                items={[
+                                                    <div className="h-48 bg-purple-600 flex items-center justify-center text-white font-black text-3xl">FAST 1</div>,
+                                                    <div className="h-48 bg-rose-600 flex items-center justify-center text-white font-black text-3xl">FAST 2</div>,
+                                                    <div className="h-48 bg-amber-600 flex items-center justify-center text-white font-black text-3xl">FAST 3</div>
+                                                ]}
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )}
+                        )
+                    }
                     {/* SECTIONS TAB */}
-                    {activeTab === 'sections' && (
-                        <div className="space-y-24 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                            <div className="border-b border-slate-200 pb-4 text-left">
-                                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">00. Page Sections</h2>
-                                <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">High-level page components for marketing websites.</p>
-                            </div>
+                    {
+                        activeTab === 'sections' && (
+                            <div className="space-y-24 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                                <div className="border-b border-slate-200 pb-4 text-left">
+                                    <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">00. Page Sections</h2>
+                                    <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">High-level page components for marketing websites.</p>
+                                </div>
 
-                            {/* Hero Sections */}
-                            <div className="space-y-8">
-                                <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4 text-left">Hero Sections</h3>
-                                <div className="space-y-12">
-                                    <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                                        <HeroSimple />
+                                {/* Hero Sections */}
+                                <div className="space-y-8">
+                                    <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4 text-left">Hero Sections</h3>
+                                    <div className="space-y-12">
+                                        <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                                            <HeroSimple />
+                                        </div>
+                                        <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                                            <HeroSplit />
+                                        </div>
                                     </div>
+                                </div>
+
+                                {/* Feature Sections */}
+                                <div className="space-y-8">
+                                    <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4 text-left">Feature Sections</h3>
+                                    <div className="space-y-12">
+                                        <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                                            <FeatureGrid />
+                                        </div>
+                                        <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                                            <FeatureThreeCol />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                {/* CTA Sections */}
+                                <div className="space-y-8">
+                                    <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4 text-left">CTA Sections</h3>
+                                    <div className="space-y-12">
+                                        <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                                            <CTASimple />
+                                        </div>
+                                        <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                                            <CTASplit />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Stats Sections */}
+                                <div className="space-y-8">
+                                    <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4 text-left">Stats Sections</h3>
+                                    <div className="space-y-12">
+                                        <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                                            <StatsSimple />
+                                        </div>
+                                        <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                                            <StatsSplit />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* FAQ Sections */}
+                                <div className="space-y-8">
+                                    <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4 text-left">FAQ Sections</h3>
+                                    <div className="space-y-12">
+                                        <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                                            <FAQSimple />
+                                        </div>
+                                        <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                                            <FAQGrid />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Logo Cloud Sections */}
+                                <div className="space-y-8">
+                                    <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4 text-left">Logo Clouds</h3>
                                     <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                                        <HeroSplit />
+                                        <LogoCloudSimple />
+                                    </div>
+                                </div>
+
+                                {/* STRUCTURAL ELEMENTS */}
+                                <div className="border-b border-slate-200 pb-4 text-left mt-12">
+                                    <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">00.2 Structural Elements</h2>
+                                    <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">Headers, Footers, and Error Pages.</p>
+                                </div>
+
+                                {/* Headers */}
+                                <div className="space-y-8">
+                                    <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4 text-left">Headers</h3>
+                                    <div className="space-y-12">
+                                        <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-gray-100">
+                                            <HeaderSimple />
+                                        </div>
+                                        <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-gray-100 h-96">
+                                            <HeaderFlyout />
+                                            <div className="p-10 text-center text-slate-400 text-sm">Scroll or interact to see flyout behavior</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Footers */}
+                                <div className="space-y-8">
+                                    <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4 text-left">Footers</h3>
+                                    <div className="space-y-12">
+                                        <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                                            <FooterSimple />
+                                        </div>
+                                        <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                                            <FooterLarge />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Error Pages */}
+                                <div className="space-y-8">
+                                    <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4 text-left">Error Pages</h3>
+                                    <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                                        <Error404 />
                                     </div>
                                 </div>
                             </div>
-
-                            {/* Feature Sections */}
-                            <div className="space-y-8">
-                                <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4 text-left">Feature Sections</h3>
-                                <div className="space-y-12">
-                                    <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                                        <FeatureGrid />
-                                    </div>
-                                    <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                                        <FeatureThreeCol />
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            {/* CTA Sections */}
-                            <div className="space-y-8">
-                                <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4 text-left">CTA Sections</h3>
-                                <div className="space-y-12">
-                                    <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                                        <CTASimple />
-                                    </div>
-                                    <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                                        <CTASplit />
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Stats Sections */}
-                            <div className="space-y-8">
-                                <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4 text-left">Stats Sections</h3>
-                                <div className="space-y-12">
-                                    <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                                        <StatsSimple />
-                                    </div>
-                                    <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                                        <StatsSplit />
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* FAQ Sections */}
-                            <div className="space-y-8">
-                                <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4 text-left">FAQ Sections</h3>
-                                <div className="space-y-12">
-                                    <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                                        <FAQSimple />
-                                    </div>
-                                    <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                                        <FAQGrid />
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Logo Cloud Sections */}
-                            <div className="space-y-8">
-                                <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4 text-left">Logo Clouds</h3>
-                                <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                                    <LogoCloudSimple />
-                                </div>
-                            </div>
-
-                            {/* STRUCTURAL ELEMENTS */}
-                            <div className="border-b border-slate-200 pb-4 text-left mt-12">
-                                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">00.2 Structural Elements</h2>
-                                <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">Headers, Footers, and Error Pages.</p>
-                            </div>
-
-                            {/* Headers */}
-                            <div className="space-y-8">
-                                <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4 text-left">Headers</h3>
-                                <div className="space-y-12">
-                                    <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-gray-100">
-                                        <HeaderSimple />
-                                    </div>
-                                    <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-gray-100 h-96">
-                                        <HeaderFlyout />
-                                        <div className="p-10 text-center text-slate-400 text-sm">Scroll or interact to see flyout behavior</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Footers */}
-                            <div className="space-y-8">
-                                <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4 text-left">Footers</h3>
-                                <div className="space-y-12">
-                                    <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                                        <FooterSimple />
-                                    </div>
-                                    <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                                        <FooterLarge />
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Error Pages */}
-                            <div className="space-y-8">
-                                <h3 className="text-sm font-black uppercase text-blue-600 tracking-[0.2em] border-l-4 border-blue-600 pl-4 text-left">Error Pages</h3>
-                                <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                                    <Error404 />
-                                </div>
-                            </div>
-                        </div>
-                    )}
+                        )
+                    }
                     {/* INTERACTIVE TAB */}
-                    {activeTab === 'interactive' && (
-                        <div className="space-y-24 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                            <div className="border-b border-slate-200 pb-4 text-left">
-                                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">00.3 Interactive Elements</h2>
-                                <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">Headless UI components with JavaScript behavior.</p>
-                            </div>
+                    {
+                        activeTab === 'interactive' && (
+                            <div className="space-y-24 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                                <div className="border-b border-slate-200 pb-4 text-left">
+                                    <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">00.3 Interactive Elements</h2>
+                                    <p className="text-slate-500 text-sm font-medium uppercase tracking-widest mt-1">Headless UI components with JavaScript behavior.</p>
+                                </div>
 
-                            {/* Search Components */}
-                            <div className="space-y-8">
-                                <h3 className="text-sm font-black uppercase text-amber-600 tracking-[0.2em] border-l-4 border-amber-600 pl-4 text-left">Search & Command</h3>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white min-h-[300px]">
-                                        <p className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-widest">Autocomplete</p>
-                                        <Autocomplete />
-                                    </div>
-                                    <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white flex flex-col items-center justify-center min-h-[300px]">
-                                        <p className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-widest">Command Palette</p>
-                                        <CommandPalette />
+                                {/* Search Components */}
+                                <div className="space-y-8">
+                                    <h3 className="text-sm font-black uppercase text-amber-600 tracking-[0.2em] border-l-4 border-amber-600 pl-4 text-left">Search & Command</h3>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                        <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white min-h-[300px]">
+                                            <p className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-widest">Autocomplete</p>
+                                            <Autocomplete />
+                                        </div>
+                                        <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white flex flex-col items-center justify-center min-h-[300px]">
+                                            <p className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-widest">Command Palette</p>
+                                            <CommandPalette />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* Overlays */}
-                            <div className="space-y-8">
-                                <h3 className="text-sm font-black uppercase text-amber-600 tracking-[0.2em] border-l-4 border-amber-600 pl-4 text-left">Overlays</h3>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                                    <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white flex flex-col items-center justify-center min-h-[240px]">
-                                        <p className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-widest">Modal Dialog</p>
-                                        <DialogDemo />
-                                    </div>
-                                    <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white flex flex-col items-center justify-center min-h-[240px]">
-                                        <p className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-widest">Popover</p>
-                                        <PopoverDemo />
-                                    </div>
-                                    <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white flex flex-col items-center justify-center min-h-[240px]">
-                                        <p className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-widest">Dropdown Menu</p>
-                                        <DropdownMenuDemo />
+                                {/* Overlays */}
+                                <div className="space-y-8">
+                                    <h3 className="text-sm font-black uppercase text-amber-600 tracking-[0.2em] border-l-4 border-amber-600 pl-4 text-left">Overlays</h3>
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                        <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white flex flex-col items-center justify-center min-h-[240px]">
+                                            <p className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-widest">Modal Dialog</p>
+                                            <DialogDemo />
+                                        </div>
+                                        <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white flex flex-col items-center justify-center min-h-[240px]">
+                                            <p className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-widest">Popover</p>
+                                            <PopoverDemo />
+                                        </div>
+                                        <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white flex flex-col items-center justify-center min-h-[240px]">
+                                            <p className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-widest">Dropdown Menu</p>
+                                            <DropdownMenuDemo />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* Disclosure & Tabs */}
-                            <div className="space-y-8">
-                                <h3 className="text-sm font-black uppercase text-amber-600 tracking-[0.2em] border-l-4 border-amber-600 pl-4 text-left">Content Switching</h3>
-                                <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-                                    <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white">
-                                        <p className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-widest">Disclosure (Accordion)</p>
-                                        <DisclosureDemo />
-                                    </div>
-                                    <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white">
-                                        <p className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-widest">Tabs (Horizontal)</p>
-                                        <TabsDemo />
-                                    </div>
-                                    <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white col-span-1 xl:col-span-2">
-                                        <p className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-widest">Tabs (Vertical)</p>
-                                        <VerticalTabs />
+                                {/* Disclosure & Tabs */}
+                                <div className="space-y-8">
+                                    <h3 className="text-sm font-black uppercase text-amber-600 tracking-[0.2em] border-l-4 border-amber-600 pl-4 text-left">Content Switching</h3>
+                                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                                        <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white">
+                                            <p className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-widest">Disclosure (Accordion)</p>
+                                            <DisclosureDemo />
+                                        </div>
+                                        <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white">
+                                            <p className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-widest">Tabs (Horizontal)</p>
+                                            <TabsDemo />
+                                        </div>
+                                        <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white col-span-1 xl:col-span-2">
+                                            <p className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-widest">Tabs (Vertical)</p>
+                                            <VerticalTabs />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* Form Elements */}
-                            <div className="space-y-8">
-                                <h3 className="text-sm font-black uppercase text-amber-600 tracking-[0.2em] border-l-4 border-amber-600 pl-4 text-left">Form Elements</h3>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white min-h-[300px]">
-                                        <p className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-widest">Custom Select</p>
-                                        <SelectDemo />
-                                    </div>
-                                    <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white min-h-[300px] flex flex-col items-center justify-center">
-                                        <p className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-widest">Copy Button</p>
-                                        <CopyButton />
+                                {/* Form Elements */}
+                                <div className="space-y-8">
+                                    <h3 className="text-sm font-black uppercase text-amber-600 tracking-[0.2em] border-l-4 border-amber-600 pl-4 text-left">Form Elements</h3>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                        <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white min-h-[300px]">
+                                            <p className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-widest">Custom Select</p>
+                                            <SelectDemo />
+                                        </div>
+                                        <div className="p-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white min-h-[300px] flex flex-col items-center justify-center">
+                                            <p className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-widest">Copy Button</p>
+                                            <CopyButton />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                        </div>
-                    )}
+                            </div>
+                        )
+                    }
 
                     {/* AI Preview SECTION */}
-                    {activeTab === 'ai' && (
-                        <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-500 text-left">
-                            <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
-                                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">14. AI Integration</h2>
-                                <p className="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-widest mt-1">Intelligent components and assistant interfaces.</p>
-                            </div>
+                    {
+                        activeTab === 'ai' && (
+                            <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-500 text-left">
+                                <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
+                                    <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">14. AI Integration</h2>
+                                    <p className="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-widest mt-1">Intelligent components and assistant interfaces.</p>
+                                </div>
 
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                                <div className="space-y-8">
-                                    <h3 className="text-sm font-black uppercase text-indigo-600 tracking-[0.2em] border-l-4 border-indigo-600 pl-4">14.1 AI Assistant Operator</h3>
-                                    <div className="bg-slate-100 dark:bg-slate-800/50 p-12 rounded-[32px] border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center text-center space-y-6">
-                                        <div className="relative">
-                                            <div className="absolute -inset-4 bg-indigo-500/20 blur-3xl rounded-full" />
-                                            <AIOperator />
-                                        </div>
-                                        <div className="space-y-2 relative">
-                                            <p className="font-black text-slate-900 dark:text-white uppercase">Interactive AI Operator</p>
-                                            <p className="text-[12px] font-bold text-slate-400 uppercase tracking-widest max-w-xs">
-                                                Click the smiley button to launch the AI Assistant overlay.
-                                            </p>
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                                    <div className="space-y-8">
+                                        <h3 className="text-sm font-black uppercase text-indigo-600 tracking-[0.2em] border-l-4 border-indigo-600 pl-4">14.1 AI Assistant Operator</h3>
+                                        <div className="bg-slate-100 dark:bg-slate-800/50 p-12 rounded-[32px] border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center text-center space-y-6">
+                                            <div className="relative">
+                                                <div className="absolute -inset-4 bg-indigo-500/20 blur-3xl rounded-full" />
+                                                <AIOperator />
+                                            </div>
+                                            <div className="space-y-2 relative">
+                                                <p className="font-black text-slate-900 dark:text-white uppercase">Interactive AI Operator</p>
+                                                <p className="text-[12px] font-bold text-slate-400 uppercase tracking-widest max-w-xs">
+                                                    Click the smiley button to launch the AI Assistant overlay.
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div className="space-y-8">
-                                    <h3 className="text-sm font-black uppercase text-indigo-600 tracking-[0.2em] border-l-4 border-indigo-600 pl-4">14.2 AI Context Awareness</h3>
-                                    <Card className="bg-gradient-to-br from-indigo-50 to-white dark:from-indigo-950/20 dark:to-slate-900 overflow-hidden">
-                                        <CardContent className="p-8 space-y-6">
-                                            <div className="flex items-center gap-3">
-                                                <Sparkles className="h-5 w-5 text-indigo-600" />
-                                                <p className="text-[12px] font-black uppercase text-indigo-600 tracking-widest">System Insights</p>
-                                            </div>
-                                            <div className="space-y-4">
-                                                <div className="p-4 bg-white/50 dark:bg-slate-800/50 rounded-2xl border border-indigo-100 dark:border-indigo-900/50 shadow-sm">
-                                                    <p className="text-sm font-bold text-slate-600 dark:text-slate-300">"Your production cluster is performing at 98% efficiency. AI suggests optimizing node 14 for cost savings."</p>
+                                    <div className="space-y-8">
+                                        <h3 className="text-sm font-black uppercase text-indigo-600 tracking-[0.2em] border-l-4 border-indigo-600 pl-4">14.2 AI Context Awareness</h3>
+                                        <Card className="bg-gradient-to-br from-indigo-50 to-white dark:from-indigo-950/20 dark:to-slate-900 overflow-hidden">
+                                            <CardContent className="p-8 space-y-6">
+                                                <div className="flex items-center gap-3">
+                                                    <Sparkles className="h-5 w-5 text-indigo-600" />
+                                                    <p className="text-[12px] font-black uppercase text-indigo-600 tracking-widest">System Insights</p>
                                                 </div>
-                                                <Button variant="outline" className="w-full rounded-xl border-indigo-200 dark:border-indigo-900 text-indigo-600 dark:text-indigo-400 font-black uppercase text-xs tracking-widest">
-                                                    View AI Analysis
-                                                </Button>
-                                            </div>
-                                        </CardContent>
-                                    </Card>
+                                                <div className="space-y-4">
+                                                    <div className="p-4 bg-white/50 dark:bg-slate-800/50 rounded-2xl border border-indigo-100 dark:border-indigo-900/50 shadow-sm">
+                                                        <p className="text-sm font-bold text-slate-600 dark:text-slate-300">"Your production cluster is performing at 98% efficiency. AI suggests optimizing node 14 for cost savings."</p>
+                                                    </div>
+                                                    <Button variant="outline" className="w-full rounded-xl border-indigo-200 dark:border-indigo-900 text-indigo-600 dark:text-indigo-400 font-black uppercase text-xs tracking-widest">
+                                                        View AI Analysis
+                                                    </Button>
+                                                </div>
+                                            </CardContent>
+                                        </Card>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )}
-                </Container>
-            </main>
+                        )
+                    }
+                </Container >
+            </main >
 
             {/* OVERLAYS */}
-            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+            < Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)
+            }>
                 <ModalHeader title="Quick Actions" description="Access common system commands" icon={<Activity className="w-5 h-5" />} onClose={() => setIsModalOpen(false)} />
                 <ModalContent className="space-y-4">
                     <Button className="w-full justify-start" variant="outline" icon={Plus}>New Project</Button>
@@ -1703,7 +1719,7 @@ export function ComponentGallery() {
                 <ModalFooter>
                     <Button variant="secondary" onClick={() => setIsModalOpen(false)}>Cancel</Button>
                 </ModalFooter>
-            </Modal>
+            </Modal >
 
             <Drawer
                 isOpen={isDrawerOpen}

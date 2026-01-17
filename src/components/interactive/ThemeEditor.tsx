@@ -296,46 +296,7 @@ export const radius = {
                     </CardContent>
                 </Card>
 
-                {/* Export Section */}
-                <div className="bg-slate-900 rounded-3xl p-6 shadow-2xl relative group">
-                    <Tabs defaultValue="css">
-                        <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-white/50 text-xs font-bold uppercase tracking-widest">Global Configuration</h3>
-                            <TabsList className="bg-white/10 border-white/5 text-white/50">
-                                <TabsTrigger value="css" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white hover:text-white"><FileCode className="w-3 h-3 mr-2" /> CSS</TabsTrigger>
-                                <TabsTrigger value="colors" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white hover:text-white"><FileJson className="w-3 h-3 mr-2" /> TS: Colors</TabsTrigger>
-                                <TabsTrigger value="radius" className="data-[state=active]:bg-purple-600 data-[state=active]:text-white hover:text-white"><FileJson className="w-3 h-3 mr-2" /> TS: Radius</TabsTrigger>
-                            </TabsList>
-                        </div>
 
-                        <TabsContent value="css" className="relative mt-0">
-                            <CopyButton text={generateCss()} />
-                            <textarea
-                                readOnly
-                                value={generateCss()}
-                                className="w-full h-80 bg-black/30 rounded-xl p-4 text-emerald-400 font-mono text-xs focus:outline-none resize-none border border-white/5"
-                            />
-                        </TabsContent>
-
-                        <TabsContent value="colors" className="relative mt-0">
-                            <CopyButton text={generateTsColors()} />
-                            <textarea
-                                readOnly
-                                value={generateTsColors()}
-                                className="w-full h-80 bg-black/30 rounded-xl p-4 text-blue-300 font-mono text-xs focus:outline-none resize-none border border-white/5"
-                            />
-                        </TabsContent>
-
-                        <TabsContent value="radius" className="relative mt-0">
-                            <CopyButton text={generateTsRadius()} />
-                            <textarea
-                                readOnly
-                                value={generateTsRadius()}
-                                className="w-full h-80 bg-black/30 rounded-xl p-4 text-purple-300 font-mono text-xs focus:outline-none resize-none border border-white/5"
-                            />
-                        </TabsContent>
-                    </Tabs>
-                </div>
             </div>
 
             <div className="lg:col-span-2 space-y-8">
@@ -392,6 +353,46 @@ export const radius = {
                         <div className="aspect-square bg-white border border-slate-200 flex items-center justify-center text-xs font-mono text-slate-400 rounded-[var(--radius-xl)] dark:bg-slate-800 dark:border-slate-700">xl</div>
                         <div className="aspect-square bg-white border border-slate-200 flex items-center justify-center text-xs font-mono text-slate-400 rounded-[var(--radius-2xl)] dark:bg-slate-800 dark:border-slate-700">2xl</div>
                     </div>
+                </div>
+                {/* Export Section */}
+                <div className="bg-slate-900 rounded-3xl p-6 shadow-2xl relative group">
+                    <Tabs defaultValue="css">
+                        <div className="flex items-center justify-between mb-4">
+                            <h3 className="text-white/50 text-xs font-bold uppercase tracking-widest">Global Configuration</h3>
+                            <TabsList className="bg-white/10 border-white/5 text-white/50">
+                                <TabsTrigger value="css" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white hover:text-white"><FileCode className="w-3 h-3 mr-2" /> CSS</TabsTrigger>
+                                <TabsTrigger value="colors" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white hover:text-white"><FileJson className="w-3 h-3 mr-2" /> TS: Colors</TabsTrigger>
+                                <TabsTrigger value="radius" className="data-[state=active]:bg-purple-600 data-[state=active]:text-white hover:text-white"><FileJson className="w-3 h-3 mr-2" /> TS: Radius</TabsTrigger>
+                            </TabsList>
+                        </div>
+
+                        <TabsContent value="css" className="relative mt-0">
+                            <CopyButton text={generateCss()} />
+                            <textarea
+                                readOnly
+                                value={generateCss()}
+                                className="w-full h-80 bg-black/30 rounded-xl p-4 text-emerald-400 font-mono text-xs focus:outline-none resize-none border border-white/5"
+                            />
+                        </TabsContent>
+
+                        <TabsContent value="colors" className="relative mt-0">
+                            <CopyButton text={generateTsColors()} />
+                            <textarea
+                                readOnly
+                                value={generateTsColors()}
+                                className="w-full h-80 bg-black/30 rounded-xl p-4 text-blue-300 font-mono text-xs focus:outline-none resize-none border border-white/5"
+                            />
+                        </TabsContent>
+
+                        <TabsContent value="radius" className="relative mt-0">
+                            <CopyButton text={generateTsRadius()} />
+                            <textarea
+                                readOnly
+                                value={generateTsRadius()}
+                                className="w-full h-80 bg-black/30 rounded-xl p-4 text-purple-300 font-mono text-xs focus:outline-none resize-none border border-white/5"
+                            />
+                        </TabsContent>
+                    </Tabs>
                 </div>
             </div>
         </div>

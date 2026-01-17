@@ -32,6 +32,7 @@ export * from "./components/molecules/AIOperator"
 export * from './components/organisms/Modal'
 export * from './components/organisms/Table'
 export * from './components/organisms/Tabs'
+export * from './components/organisms/ScreenBuilder'
 export * from './components/organisms/Breadcrumbs'
 export * from './components/organisms/Drawer'
 export * from './components/organisms/VerticalNavigation'
